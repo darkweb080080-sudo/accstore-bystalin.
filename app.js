@@ -183,6 +183,7 @@ function authDlg(mode){
     '<label><span>'+t("email")+'</span><input id="ae" type="email" required autocomplete="email"></label>'+
     '<label><span>'+t("password")+'</span><input id="ap" type="password" minlength="6" required autocomplete="'+(mode==="up"?"new-password":"current-password")+'"></label>'+
     '<p class="err" id="aerr"></p><button class="btn p" type="submit">'+(mode==="up"?t("signup"):t("login"))+'</button></form>'+
+    '<div class="row"><button class="btn" type="button" data-act="oauth" data-id="google">Google</button></div>'+
     '<p class="note"><a href="#" data-act="auth-sw" data-id="'+(mode==="up"?"in":"up")+'">'+(mode==="up"?t("login"):t("signup"))+'</a></p>');
   $("af").addEventListener("submit",async function(e){
     e.preventDefault();
@@ -198,7 +199,7 @@ async function afterAuth(fresh){
   await loadMe(); nav();
   if(fresh && isOwner()){ location.hash = "#/admin"; } else render();
 }
-sb.auth.onAuthStateChange(function(ev){ if(ev==="SIGNED_OUT"){ ME = null; SESS = null; render(); } });
+sb.auth.onAuthStateChange(function(ev){ if(ev==="SIGNED_OUT"){ ME = null; SESS = null; render(); } else if(ev==="SIGNED_IN" && !SESS){ setTimeout(function(){ afterAuth(true); },0); } });
 
 /* ---------- market ---------- */
 var MK = {q:"",rk:"",pr:1000,so:"a"}, ACCS = [];
@@ -490,6 +491,7 @@ async function needLogin(){ if(!SESS){ authDlg("in"); return true; } if(ME && ME
 var ACT = {
   "auth":function(id){ authDlg(id); },
   "auth-sw":function(id){ authDlg(id); },
+  "oauth":async function(id){ var r = await sb.auth.signInWithOAuth({provider:id,options:{redirectTo:location.origin+location.pathname}}); if(r.error) toast(r.error.message); },
   "at":function(id){ AT = id; render(); },
   "gal":function(id,el){ var i = $("ph-"+id); if(i) i.src = el.getAttribute("data-u"); },
   "buy":async function(id){ if(await needLogin()) return; var a = ACCS.filter(function(x){ return x.id===id; })[0]; if(!a) return; if(SESS.user.id===a.seller_id){ toast(t("own")); return; } BUY = {a:a,mode:"full",term:60}; buyDlg(); },
