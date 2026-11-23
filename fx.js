@@ -81,3 +81,45 @@ document.addEventListener("mouseout",function(e){ var c = e.target.closest && e.
 var pg = document.getElementById("prog");
 window.addEventListener("scroll",function(){ var h = document.documentElement; pg.style.width = (h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+"%"; },{passive:true});
 })();
+
+/* ===== scenery: mountains, plane, meteors, embers ===== */
+(function(){
+  function ridge(seed,amp,n,fill,stroke){
+    var pts=[],x,y,r=seed; function rnd(){ r=(r*9301+49297)%233280; return r/233280; }
+    var base=40; for(var k=0;k<=n;k++){ x=k*1000/n; y=base-(rnd()*amp)-(k%3===0?amp*.5:0); pts.push([x,y]); }
+    var d="M0 100 L"+pts.map(function(p){ return p[0].toFixed(0)+" "+p[1].toFixed(1); }).join(" L")+" L1000 100 Z";
+    return '<svg viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path d="'+d+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>';
+  }
+  var m1=document.getElementById("m1"),m2=document.getElementById("m2");
+  if(m1) m1.innerHTML=ridge(7,46,22,"#0b1230","rgba(39,242,255,.35)");
+  if(m2) m2.innerHTML=ridge(23,34,30,"#070a1c","rgba(255,61,219,.35)");
+  var pl=document.querySelector("#bg .plane");
+  if(pl) pl.innerHTML='<svg viewBox="0 0 120 40" aria-hidden="true"><path d="M5 20Q10 14 30 14L95 14Q115 16 118 20Q115 24 95 26L30 26Q10 26 5 20Z" fill="#cfe3ff"/><path d="M12 14 4 3h12l10 11Z" fill="#9fc0f5"/><path d="M55 22 74 37h14L78 22Z" fill="#9fc0f5"/><path d="M60 14 74 3h12L78 14Z" fill="#9fc0f5"/><g fill="#27F2FF"><circle cx="40" cy="20" r="1.6"/><circle cx="50" cy="20" r="1.6"/><circle cx="60" cy="20" r="1.6"/><circle cx="105" cy="19" r="2"/></g></svg>';
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce) return;
+  /* mountains parallax with mouse */
+  var tx=0,ty=0,raf2=0;
+  window.addEventListener("mousemove",function(e){ tx=(e.clientX/innerWidth-.5); if(!raf2) raf2=requestAnimationFrame(function(){ raf2=0; if(m1) m1.style.transform="translateX("+(tx*-26).toFixed(1)+"px)"; if(m2) m2.style.transform="translateX("+(tx*-52).toFixed(1)+"px)"; }); });
+  /* meteors */
+  var bgEl=document.getElementById("bg");
+  function meteor(){
+    if(document.hidden||!bgEl) return;
+    var m=document.createElement("div"); m.className="meteor";
+    m.style.left=(Math.random()*70)+"%"; m.style.top=(Math.random()*35)+"%"; m.style.setProperty("--r",(20+Math.random()*16)+"deg");
+    bgEl.appendChild(m); setTimeout(function(){ m.remove(); },1400);
+  }
+  (function loopM(){ setTimeout(function(){ meteor(); if(Math.random()<.3) setTimeout(meteor,250); loopM(); },2500+Math.random()*5500); })();
+  /* embers rising from the horizon */
+  var cv=document.createElement("canvas"); cv.style.cssText="position:absolute;inset:0;width:100%;height:100%"; bgEl.insertBefore(cv,document.getElementById("m1"));
+  var c=cv.getContext("2d"),W,H,E=[],N=innerWidth<700?18:36;
+  function sz(){ W=cv.width=innerWidth; H=cv.height=innerHeight; } sz(); addEventListener("resize",sz);
+  function mk(init){ return {x:Math.random()*W,y:init?Math.random()*H:H+10,v:.25+Math.random()*.7,s:1+Math.random()*2.2,p:Math.random()*6.3,c:Math.random()<.7?"255,197,61":"39,242,255"}; }
+  for(var k=0;k<N;k++) E.push(mk(true));
+  var last=0;
+  (function draw(t){
+    requestAnimationFrame(draw); if(document.hidden) return;
+    var dt=Math.min(t-last,50)||16; last=t; c.clearRect(0,0,W,H);
+    for(var i=0;i<E.length;i++){ var e=E[i]; e.y-=e.v*dt*.045; e.x+=Math.sin(t/1200+e.p)*.25; if(e.y<-10){ E[i]=mk(false); continue; }
+      var a=Math.max(0,Math.min(1,(e.y/H)))*.8; c.fillStyle="rgba("+e.c+","+a.toFixed(2)+")"; c.shadowColor="rgba("+e.c+",.9)"; c.shadowBlur=8; c.beginPath(); c.arc(e.x,e.y,e.s,0,6.283); c.fill(); }
+  })(0);
+})();
