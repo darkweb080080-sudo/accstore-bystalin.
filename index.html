@@ -36,6 +36,17 @@ ul{padding-left:20px;color:var(--ink2)}li{margin:6px 0}
 .note{color:var(--ink2);font-size:13px}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;color:var(--ink2);font-size:14px}
 a{color:var(--cy)}
+.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink2)}
+input,select{background:var(--s);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:10px;font:inherit}
+.price{font:700 22px "Arial Narrow",Arial,sans-serif}.usd{color:var(--ink2);font-size:14px;font-weight:400}
+.ph{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:6px;background:#0d1122}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.chip{border:1px solid var(--line);border-radius:4px;padding:2px 8px;font-size:12px;color:var(--ink2)}
+dialog{background:var(--s);color:var(--ink);border:1px solid var(--cy);border-radius:10px;max-width:520px;width:calc(100% - 24px);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+.num{font:600 20px ui-monospace,monospace;letter-spacing:.04em;overflow-wrap:anywhere}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+button.btn{background:none;cursor:pointer;font:inherit;font-weight:600}button.btn.p{background:var(--cy)}
 </style>
 </head>
 <body>
@@ -47,11 +58,21 @@ a{color:var(--cy)}
 <h1 data-k="h1">PUBG akkauntlar, tekshirilgan sotuvchilardan</h1>
 <p class="lead" data-k="lead">ACC STORE: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. To'liq to'lang yoki narxni 10 kunlik to'lovlarga bo'ling.</p>
 <div class="btns">
-<a class="btn p" href="https://claude.ai/artifact/HP5Tc2fqWULSLhwkBnqKyT" data-k="go">Saytga kirish</a>
+<a class="btn p" href="#bozor" data-k="go">Akkauntlarni ko'rish</a>
 <a class="btn" href="https://t.me/STOREe_ACC" data-k="chan">Rasmiy Telegram kanal</a>
 <a class="btn" href="https://t.me/owner_accSTORE" data-k="owner">Report, takliflar, hamkorlik</a>
 <span class="soon" data-k="ig">Instagram: tez orada</span>
 </div></section>
+
+<h2 id="bozor" data-k="mk">PUBG Mobile akkauntlar</h2>
+<div class="fl">
+<label><span data-k="fs">Qidirish</span><input id="q" placeholder="A-1001"></label>
+<label><span>Rank</span><select id="rk"><option value="">-</option></select></label>
+<label><span data-k="fp">Narx, so'mgacha</span><input id="pr" type="range" min="0" max="1000" value="1000"><b id="prv"></b></label>
+<label><span data-k="so">Saralash</span><select id="so"><option value="a" data-k="sa">Avval arzonlari</option><option value="d" data-k="sd">Avval qimmatlari</option><option value="l" data-k="sl">Level bo'yicha</option></select></label>
+</div>
+<div class="grid" id="list"></div>
+<p class="note" id="empty" hidden data-k="em">Hozircha akkaunt yo'q. Yangi akkauntlar rasmiy Telegram kanalda e'lon qilinadi. Akkaunt sotmoqchi bo'lsangiz, egamizga yozing.</p>
 
 <section class="grid">
 <div class="card"><h3 data-k="c1t">Xavfsiz to'lov</h3><p data-k="c1">Xaridor puli platformada saqlanadi va akkaunt topshirilgandan keyingina sotuvchiga beriladi.</p></div>
@@ -60,25 +81,70 @@ a{color:var(--cy)}
 <div class="card"><h3 data-k="c4t">Tekshirilgan sotuvchilar</h3><p data-k="c4">Har bir sotuvchi va hamkor shaxsi, joylashuvi va telefoni bo'yicha tekshiriladi.</p></div>
 </section>
 
+<h2 data-k="rt">Bo'lib to'lash qoidasi</h2>
+<p class="lead" style="font-size:16px" data-k="rl">Muddatgacha to'liq to'lamasangiz, to'langan puldan ijara haqi ushlanadi: 0-10 kunda 15%, 11-30 kunda 25%, 31 kundan keyin 30%. Qolgani qaytariladi.</p>
+
 <h2 data-k="gt">Maqsadlarimiz</h2>
 <ul><li data-k="g1">Xavfsiz va ochiq akkaunt savdosi.</li><li data-k="g2">Barcha sotuvchi va hamkorlarni tekshirish.</li><li data-k="g3">Shikoyat va nizolarni tez ko'rib chiqish.</li></ul>
-
 <h2 data-k="mt">Marralarimiz</h2>
 <ul><li data-k="m1">Birinchi 10 ta muvaffaqiyatli savdo</li><li data-k="m2">Rasmiy kanalda 1 000 obunachi</li><li data-k="m3">10 ta tekshirilgan hamkor</li><li data-k="m4">UC xizmati va akkaunt arendasi (tez orada)</li></ul>
 <p class="note" data-k="nt">Bu rejalar. Raqamlar maqsad, kafolat emas.</p>
-
 <footer>© ACC STORE · <a href="https://t.me/STOREe_ACC">Telegram</a> · <a href="https://t.me/owner_accSTORE">Aloqa</a></footer>
 </div>
+
+<dialog id="dlg"><div id="dbody"></div><div class="row"><button class="btn" id="dx" type="button" data-k="cl">Yopish</button></div></dialog>
 <script>
 var T={
 en:{h1:"PUBG accounts from verified sellers",lead:"ACC STORE is a trusted marketplace for buying and selling PUBG Mobile accounts safely. Pay in full or split the price into 10-day payments.",go:"Open the site",chan:"Official Telegram channel",owner:"Reports, offers, partnership",ig:"Instagram: coming soon",c1t:"Safe payment",c1:"Buyer money is held by the platform and released to the seller only after the account is handed over.",c2t:"QR handover",c2:"The account is accessed by QR code, no password is shared. After full payment the Gmail and phone are changed.",c3t:"Installments",c3:"Split the price into payments every 10 days. Rules and markup are shown up front.",c4t:"Verified sellers",c4:"Every seller and partner is checked by identity, location and phone.",gt:"Our goals",g1:"Safe and open account trading.",g2:"Verify every seller and partner.",g3:"Handle complaints and disputes quickly.",mt:"Milestones",m1:"First 10 successful sales",m2:"1,000 subscribers on the official channel",m3:"10 verified partners",m4:"UC service and account rental (coming soon)",nt:"These are plans. Numbers are targets, not guarantees."},
 ru:{h1:"Аккаунты PUBG от проверенных продавцов",lead:"ACC STORE: надёжная площадка для безопасной покупки и продажи аккаунтов PUBG Mobile. Платите сразу или делите цену на платежи каждые 10 дней.",go:"Перейти на сайт",chan:"Официальный Telegram-канал",owner:"Жалобы, предложения, партнёрство",ig:"Instagram: скоро",c1t:"Безопасная оплата",c1:"Деньги покупателя хранятся на платформе и передаются продавцу только после передачи аккаунта.",c2t:"Передача по QR",c2:"Вход по QR-коду, пароль не передаётся. После полной оплаты Gmail и номер меняются.",c3t:"Рассрочка",c3:"Делите цену на платежи каждые 10 дней. Правила и наценка видны заранее.",c4t:"Проверенные продавцы",c4:"Каждый продавец и партнёр проверяется по личности, адресу и телефону.",gt:"Наши цели",g1:"Безопасная и открытая торговля аккаунтами.",g2:"Проверка всех продавцов и партнёров.",g3:"Быстрое рассмотрение жалоб и споров.",mt:"Наши рубежи",m1:"Первые 10 успешных сделок",m2:"1 000 подписчиков в официальном канале",m3:"10 проверенных партнёров",m4:"Сервис UC и аренда аккаунтов (скоро)",nt:"Это планы. Цифры: цели, а не гарантии."},
 tr:{h1:"Doğrulanmış satıcılardan PUBG hesapları",lead:"ACC STORE: PUBG Mobile hesaplarını güvenle alıp satmak için güvenilir pazar. Peşin ödeyin veya fiyatı 10 günlük taksitlere bölün.",go:"Siteye git",chan:"Resmi Telegram kanalı",owner:"Şikayet, öneri, ortaklık",ig:"Instagram: yakında",c1t:"Güvenli ödeme",c1:"Alıcının parası platformda tutulur, hesap teslim edildikten sonra satıcıya ödenir.",c2t:"QR ile teslim",c2:"Hesaba QR ile girilir, şifre verilmez. Tam ödemeden sonra Gmail ve numara değiştirilir.",c3t:"Taksit",c3:"Fiyatı her 10 günde bir ödemeye bölün. Kurallar ve ek ücret baştan görünür.",c4t:"Doğrulanmış satıcılar",c4:"Her satıcı ve ortak kimlik, konum ve telefon ile doğrulanır.",gt:"Hedeflerimiz",g1:"Güvenli ve açık hesap ticareti.",g2:"Tüm satıcı ve ortakları doğrulamak.",g3:"Şikayet ve anlaşmazlıkları hızlı incelemek.",mt:"Kilometre taşları",m1:"İlk 10 başarılı satış",m2:"Resmi kanalda 1.000 abone",m3:"10 doğrulanmış ortak",m4:"UC hizmeti ve hesap kiralama (yakında)",nt:"Bunlar planlardır. Rakamlar hedeftir, garanti değil."}};
-var els=document.querySelectorAll("[data-k]"),base={};
+var X={
+en:{go:"Browse accounts",mk:"PUBG Mobile accounts",fs:"Search",fp:"Price up to, UZS",so:"Sort by",sa:"Cheapest first",sd:"Most expensive first",sl:"By level",em:"No accounts yet. New accounts are announced on the official Telegram channel. If you want to sell an account, message the owner.",rt:"Installment rule",rl:"If you do not pay in full by the deadline, a rental fee is kept from the paid amount: 15% for 0-10 days, 25% for 11-30 days, 30% after 31 days. The rest is refunded.",cl:"Close",buy:"Buy",lvl:"Level",sk:"Skins",my:"Mythic",full:"Pay in full",inst:"Installments",term:"Term",days:"days",pay:"payments, every 10 days",total:"Total",card:"Pay to this card",uz:"UZ card (Uzbekistan only)",visa:"Visa (international)",how:"Send the payment, put the account ID in the comment, then message us on Telegram with the receipt. The account is handed over by QR after confirmation.",tg:"Send receipt on Telegram",copy:"Copy",ok:"Copied",fee:"Markup",none:"-"},
+ru:{go:"Смотреть аккаунты",mk:"Аккаунты PUBG Mobile",fs:"Поиск",fp:"Цена до, UZS",so:"Сортировка",sa:"Сначала дешёвые",sd:"Сначала дорогие",sl:"По уровню",em:"Аккаунтов пока нет. Новые аккаунты публикуются в официальном Telegram-канале. Хотите продать аккаунт, напишите владельцу.",rt:"Правило рассрочки",rl:"Если не оплатите полностью к сроку, из оплаченной суммы удерживается плата за аренду: 15% за 0-10 дней, 25% за 11-30 дней, 30% после 31 дня. Остаток возвращается.",cl:"Закрыть",buy:"Купить",lvl:"Уровень",sk:"Скины",my:"Mythic",full:"Оплата сразу",inst:"Рассрочка",term:"Срок",days:"дней",pay:"платежей, каждые 10 дней",total:"Итого",card:"Оплата на эту карту",uz:"Карта UZ (только Узбекистан)",visa:"Visa (международная)",how:"Переведите оплату, укажите ID аккаунта в комментарии и отправьте чек нам в Telegram. После подтверждения аккаунт передаётся по QR.",tg:"Отправить чек в Telegram",copy:"Копировать",ok:"Скопировано",fee:"Наценка",none:"-"},
+tr:{go:"Hesaplara göz at",mk:"PUBG Mobile hesapları",fs:"Ara",fp:"Fiyat üst sınırı, UZS",so:"Sırala",sa:"Önce ucuzlar",sd:"Önce pahalılar",sl:"Seviyeye göre",em:"Henüz hesap yok. Yeni hesaplar resmi Telegram kanalında duyurulur. Hesap satmak isterseniz sahibe yazın.",rt:"Taksit kuralı",rl:"Süresi içinde tamamını ödemezseniz, ödenen tutardan kira bedeli kesilir: 0-10 gün %15, 11-30 gün %25, 31 günden sonra %30. Kalanı iade edilir.",cl:"Kapat",buy:"Satın al",lvl:"Seviye",sk:"Skin",my:"Mythic",full:"Peşin ödeme",inst:"Taksit",term:"Süre",days:"gün",pay:"ödeme, her 10 günde",total:"Toplam",card:"Bu karta ödeyin",uz:"UZ kartı (yalnızca Özbekistan)",visa:"Visa (uluslararası)",how:"Ödemeyi gönderin, açıklamaya hesap ID'sini yazın, dekontu Telegram'dan bize iletin. Onaydan sonra hesap QR ile teslim edilir.",tg:"Dekontu Telegram'dan gönder",copy:"Kopyala",ok:"Kopyalandı",fee:"Ek ücret",none:"-"}};
+["en","ru","tr"].forEach(function(l){Object.assign(T[l],X[l]);});
+var U={uz:{buy:"Sotib olish",lvl:"Level",sk:"Skin",my:"Mythic",full:"To'liq to'lov",inst:"Bo'lib to'lash",term:"Muddat",days:"kun",pay:"ta to'lov, har 10 kunda",total:"Jami",card:"Shu kartaga to'lang",uz:"UZ karta (faqat O'zbekistonda)",visa:"Visa (xalqaro)",how:"To'lovni o'tkazing, izohga akkaunt ID sini yozing, chekni Telegramda bizga yuboring. Tasdiqlangach akkaunt QR orqali topshiriladi.",tg:"Chekni Telegramda yuborish",copy:"Nusxalash",ok:"Nusxalandi",fee:"Ustama",none:"-"}};
+var CARDS=[{k:"uz",n:"5614 6816 2946 4177"},{k:"visa",n:"4463 0900 1182 1736"}];
+var els=document.querySelectorAll("[data-k]"),base={},LG="uz",D={rate:12500,markup:20,accounts:[]};
 els.forEach(function(e){base[e.getAttribute("data-k")]=e.textContent;});
-function setL(l){document.documentElement.lang=l;els.forEach(function(e){var k=e.getAttribute("data-k");e.textContent=(l==="uz"?base:T[l])[k]||base[k];});
-document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l));});}
+function tx(k){return (LG==="uz"?U.uz[k]:T[LG][k])||U.uz[k]||k;}
+function fmt(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g," ");}
+function usd(n){var v=n/D.rate;return "$"+(v>=100?fmt(v):v.toFixed(2));}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function pmap(v){var x=300000*Math.pow(150e6/300000,v/1000),st=x<1e6?1e4:x<1e7?1e5:1e6;return Math.min(150e6,Math.round(x/st)*st);}
+function setL(l){LG=l;document.documentElement.lang=l;els.forEach(function(e){var k=e.getAttribute("data-k");e.textContent=(l==="uz"?base:T[l])[k]||base[k];});
+document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l));});render();}
 document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setL(b.getAttribute("data-l"));});});
+function render(){
+  var q=$("q").value.trim().toLowerCase(),rk=$("rk").value,mx=pmap(+$("pr").value),so=$("so").value;
+  $("prv").textContent=fmt(mx)+" ≈ "+usd(mx);
+  var L=D.accounts.filter(function(a){return a.status!=="sotilgan"&&(!q||String(a.id).toLowerCase().indexOf(q)>=0)&&(!rk||a.rank===rk)&&a.price<=mx;});
+  L.sort(function(a,b){return (b.top?1:0)-(a.top?1:0)||(so==="a"?a.price-b.price:so==="d"?b.price-a.price:b.level-a.level);});
+  $("list").innerHTML=L.map(function(a,i){var ph=(a.photos&&a.photos[0])?'<img class="ph" loading="lazy" alt="PUBG akkaunt '+esc(a.id)+'" src="'+esc(a.photos[0])+'">':'';
+    return '<div class="card">'+ph+'<div class="chips"><span class="chip">'+esc(a.id)+'</span><span class="chip">'+esc(a.rank)+'</span>'+(a.top?'<span class="chip">TOP</span>':'')+'</div><p>'+tx("lvl")+' '+esc(a.level)+' · '+tx("sk")+' '+esc(a.skins)+' · '+tx("my")+' '+esc(a.mythic)+'</p>'+(a.desc?'<p>'+esc(a.desc)+'</p>':'')+'<div class="price">'+fmt(a.price)+' <span class="usd">≈ '+usd(a.price)+'</span></div><div class="row"><button class="btn p" type="button" data-i="'+D.accounts.indexOf(a)+'">'+tx("buy")+'</button></div></div>';}).join("");
+  $("empty").hidden=L.length>0||D.accounts.length>0&&false;
+  if(!D.accounts.length)$("empty").hidden=false;else $("empty").hidden=L.length>0;
+}
+function $(i){return document.getElementById(i);}
+var cur=null,mode="full",term=60,cardI=0;
+function modal(){var a=cur,n=term/10,tot=mode==="full"?a.price:a.price*(1+D.markup/100),each=tot/n,c=CARDS[cardI];
+  var amt=mode==="full"?tot:each;
+  var msg=encodeURIComponent("ACC STORE: "+a.id+" ("+a.rank+"), "+(mode==="full"?tx("full"):tx("inst")+" "+n+"x")+", "+fmt(amt)+" UZS");
+  var h='<h3>'+esc(a.id)+' · '+esc(a.rank)+'</h3><div class="row"><button type="button" class="btn '+(mode==="full"?"p":"")+'" data-m="full">'+tx("full")+'</button><button type="button" class="btn '+(mode==="inst"?"p":"")+'" data-m="inst">'+tx("inst")+'</button></div>';
+  if(mode==="inst"){h+='<label><span>'+tx("term")+'</span><select id="tm">'+[30,60,90,120].map(function(d){return '<option value="'+d+'"'+(d===term?" selected":"")+'>'+d+' '+tx("days")+'</option>';}).join("")+'</select></label><p>'+tx("fee")+': '+D.markup+'% · '+n+' '+tx("pay")+'</p><p>'+tx("total")+': <b>'+fmt(tot)+'</b> ≈ '+usd(tot)+'</p>';}
+  h+='<p class="price">'+fmt(amt)+' <span class="usd">≈ '+usd(amt)+'</span></p><div class="row">'+CARDS.map(function(x,i){return '<button type="button" class="btn '+(i===cardI?"p":"")+'" data-c="'+i+'">'+tx(x.k)+'</button>';}).join("")+'</div><p>'+tx("card")+':</p><div class="num">'+c.n+'</div><div class="row"><button type="button" class="btn" id="cp">'+tx("copy")+'</button></div><p class="note">'+tx("how")+'</p><a class="btn p" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE?text='+msg+'">'+tx("tg")+'</a>';
+  $("dbody").innerHTML=h;}
+$("list").addEventListener("click",function(e){var b=e.target.closest("[data-i]");if(!b)return;cur=D.accounts[+b.getAttribute("data-i")];mode="full";term=60;cardI=0;modal();$("dlg").showModal();});
+$("dbody").addEventListener("click",function(e){var m=e.target.closest("[data-m]"),c=e.target.closest("[data-c]");
+  if(m){mode=m.getAttribute("data-m");modal();}else if(c){cardI=+c.getAttribute("data-c");modal();}
+  else if(e.target.id==="cp"){var n=CARDS[cardI].n.replace(/ /g,"");try{navigator.clipboard.writeText(n);}catch(x){}e.target.textContent=tx("ok");}});
+$("dbody").addEventListener("change",function(e){if(e.target.id==="tm"){term=+e.target.value;modal();}});
+$("dx").addEventListener("click",function(){$("dlg").close();});
+["q","rk","pr","so"].forEach(function(i){$(i).addEventListener("input",render);});
+fetch("accounts.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(d){D=d;
+  var rs=[];D.accounts.forEach(function(a){if(rs.indexOf(a.rank)<0)rs.push(a.rank);});
+  $("rk").innerHTML='<option value="">-</option>'+rs.map(function(r){return '<option>'+esc(r)+'</option>';}).join("");render();}).catch(function(){render();});
+render();
 </script>
 </body>
 </html>
