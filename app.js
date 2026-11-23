@@ -7,7 +7,7 @@ var sb = window.supabase.createClient(SB_URL, SB_KEY);
 
 /* ---------- i18n ---------- */
 var D = {
-uz:{tr1:"Pul platformada saqlanadi",tr2:"QR orqali topshirish",tr3:"10 kunlik to'lovlar",tr4:"Tekshirilgan sotuvchilar",nav_market:"Bozor",nav_deals:"Bitimlarim",nav_sell:"Sotuvchi kabineti",nav_chat:"Chat",nav_partner:"Hamkor bo'lish",nav_rent:"Arenda · tez orada",nav_uc:"UC xizmati · tez orada",nav_about:"Biz haqimizda",nav_admin:"Admin paneli",
+uz:{pw2:"Parolni qayta kiriting",pw_mis:"Parollar mos kelmadi.",chek:"To'lov chekini (skrinshot) egamizga Telegramda yuboring:",chek_btn:"Chekni Telegramga yuborish",tr1:"Pul platformada saqlanadi",tr2:"QR orqali topshirish",tr3:"10 kunlik to'lovlar",tr4:"Tekshirilgan sotuvchilar",nav_market:"Bozor",nav_deals:"Bitimlarim",nav_sell:"Sotuvchi kabineti",nav_chat:"Chat",nav_partner:"Hamkor bo'lish",nav_rent:"Arenda · tez orada",nav_uc:"UC xizmati · tez orada",nav_about:"Biz haqimizda",nav_admin:"Admin paneli",
  login:"Kirish",logout:"Chiqish",signup:"Ro'yxatdan o'tish",email:"E-pochta",password:"Parol (kamida 6 belgi)",name:"Ism",
  soc_report:"Report, takliflar, hamkorlik",soc_chan:"Rasmiy kanal",soc_ig:"Instagram: tez orada",
  h1:"PUBG akkauntlar, tekshirilgan sotuvchilardan",lead:"accSTORE-bySTALIN: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. To'liq to'lang yoki narxni 10 kunlik to'lovlarga bo'ling. Pul platformada turadi, akkaunt QR kod orqali beriladi.",
@@ -32,7 +32,7 @@ uz:{tr1:"Pul platformada saqlanadi",tr2:"QR orqali topshirish",tr3:"10 kunlik to
  pt_nick:"Nikneym",pt_chan:"Kanal havolasi (https://...)",pt_bio:"Qisqa tavsif",pt_send:"Ariza yuborish",pt_wait:"Arizangiz ko'rib chiqilmoqda.",pt_code:"Kanalingizga arizangiz kodini e'lon qiling: {c}",pt_taken:"Bu nik band yoki juda o'xshash.",pt_is:"Siz tasdiqlangan hamkorsiz",
  pt_ver:"Tasdiqlangan hamkor",pt_open:"Kanalga o'tish",pt_msg:"Hamkorga yozish",pt_none:"Hozircha e'lon yo'q.",pt_nf:"Hamkor topilmadi.",
  ok:"Bajarildi",err:"Xatolik. Qayta urinib ko'ring.",banned:"Hisobingiz bloklangan.",close:"Yopish",rank_all:"Hammasi"},
-en:{tr1:"Money held by the platform",tr2:"QR handover",tr3:"10-day installments",tr4:"Verified sellers",nav_market:"Market",nav_deals:"My deals",nav_sell:"Seller area",nav_chat:"Chat",nav_partner:"Become a partner",nav_rent:"Rental · coming soon",nav_uc:"UC service · coming soon",nav_about:"About us",nav_admin:"Admin panel",
+en:{pw2:"Repeat password",pw_mis:"Passwords do not match.",chek:"Send the payment receipt (screenshot) to the owner on Telegram:",chek_btn:"Send receipt on Telegram",tr1:"Money held by the platform",tr2:"QR handover",tr3:"10-day installments",tr4:"Verified sellers",nav_market:"Market",nav_deals:"My deals",nav_sell:"Seller area",nav_chat:"Chat",nav_partner:"Become a partner",nav_rent:"Rental · coming soon",nav_uc:"UC service · coming soon",nav_about:"About us",nav_admin:"Admin panel",
  login:"Sign in",logout:"Sign out",signup:"Sign up",email:"Email",password:"Password (min 6 chars)",name:"Name",
  soc_report:"Reports, offers, partnership",soc_chan:"Official channel",soc_ig:"Instagram: coming soon",
  h1:"PUBG accounts from verified sellers",lead:"accSTORE-bySTALIN is a trusted marketplace for buying and selling PUBG Mobile accounts safely. Pay in full or split the price into 10-day payments. Money stays on the platform, the account is handed over by QR code.",
@@ -57,7 +57,7 @@ en:{tr1:"Money held by the platform",tr2:"QR handover",tr3:"10-day installments"
  pt_nick:"Nickname",pt_chan:"Channel link (https://...)",pt_bio:"Short bio",pt_send:"Send application",pt_wait:"Your application is under review.",pt_code:"Post your application code on your channel: {c}",pt_taken:"This nickname is taken or too similar.",pt_is:"You are a verified partner",
  pt_ver:"Verified partner",pt_open:"Open channel",pt_msg:"Message the partner",pt_none:"No listings yet.",pt_nf:"Partner not found.",
  ok:"Done",err:"Error. Please try again.",banned:"Your account is blocked.",close:"Close",rank_all:"All"},
-ru:{tr1:"Деньги хранятся на платформе",tr2:"Передача по QR",tr3:"Платежи каждые 10 дней",tr4:"Проверенные продавцы",nav_market:"Рынок",nav_deals:"Мои сделки",nav_sell:"Кабинет продавца",nav_chat:"Чат",nav_partner:"Стать партнёром",nav_rent:"Аренда · скоро",nav_uc:"UC · скоро",nav_about:"О нас",nav_admin:"Админ-панель",
+ru:{pw2:"Повторите пароль",pw_mis:"Пароли не совпадают.",chek:"Отправьте чек об оплате (скриншот) владельцу в Telegram:",chek_btn:"Отправить чек в Telegram",tr1:"Деньги хранятся на платформе",tr2:"Передача по QR",tr3:"Платежи каждые 10 дней",tr4:"Проверенные продавцы",nav_market:"Рынок",nav_deals:"Мои сделки",nav_sell:"Кабинет продавца",nav_chat:"Чат",nav_partner:"Стать партнёром",nav_rent:"Аренда · скоро",nav_uc:"UC · скоро",nav_about:"О нас",nav_admin:"Админ-панель",
  login:"Войти",logout:"Выйти",signup:"Регистрация",email:"E-mail",password:"Пароль (от 6 символов)",name:"Имя",
  soc_report:"Жалобы, предложения, партнёрство",soc_chan:"Официальный канал",soc_ig:"Instagram: скоро",
  h1:"Аккаунты PUBG от проверенных продавцов",lead:"accSTORE-bySTALIN: надёжная площадка для безопасной покупки и продажи аккаунтов PUBG Mobile. Платите сразу или делите цену на платежи каждые 10 дней. Деньги хранятся на платформе, аккаунт передаётся по QR.",
@@ -82,7 +82,7 @@ ru:{tr1:"Деньги хранятся на платформе",tr2:"Перед�
  pt_nick:"Ник",pt_chan:"Ссылка на канал (https://...)",pt_bio:"Коротко о себе",pt_send:"Отправить заявку",pt_wait:"Заявка на рассмотрении.",pt_code:"Опубликуйте код заявки на канале: {c}",pt_taken:"Ник занят или слишком похож.",pt_is:"Вы подтверждённый партнёр",
  pt_ver:"Проверенный партнёр",pt_open:"Открыть канал",pt_msg:"Написать партнёру",pt_none:"Объявлений пока нет.",pt_nf:"Партнёр не найден.",
  ok:"Готово",err:"Ошибка. Попробуйте ещё раз.",banned:"Ваш аккаунт заблокирован.",close:"Закрыть",rank_all:"Все"},
-tr:{tr1:"Para platformda bekler",tr2:"QR ile teslim",tr3:"10 günlük taksit",tr4:"Doğrulanmış satıcılar",nav_market:"Pazar",nav_deals:"Anlaşmalarım",nav_sell:"Satıcı paneli",nav_chat:"Sohbet",nav_partner:"Ortak ol",nav_rent:"Kiralama · yakında",nav_uc:"UC hizmeti · yakında",nav_about:"Hakkımızda",nav_admin:"Yönetim paneli",
+tr:{pw2:"Şifreyi tekrarlayın",pw_mis:"Şifreler eşleşmiyor.",chek:"Ödeme dekontunu (ekran görüntüsü) Telegram'dan sahibe gönderin:",chek_btn:"Dekontu Telegram'dan gönder",tr1:"Para platformda bekler",tr2:"QR ile teslim",tr3:"10 günlük taksit",tr4:"Doğrulanmış satıcılar",nav_market:"Pazar",nav_deals:"Anlaşmalarım",nav_sell:"Satıcı paneli",nav_chat:"Sohbet",nav_partner:"Ortak ol",nav_rent:"Kiralama · yakında",nav_uc:"UC hizmeti · yakında",nav_about:"Hakkımızda",nav_admin:"Yönetim paneli",
  login:"Giriş",logout:"Çıkış",signup:"Kayıt ol",email:"E-posta",password:"Şifre (en az 6 karakter)",name:"Ad",
  soc_report:"Şikayet, öneri, ortaklık",soc_chan:"Resmi kanal",soc_ig:"Instagram: yakında",
  h1:"Doğrulanmış satıcılardan PUBG hesapları",lead:"accSTORE-bySTALIN: PUBG Mobile hesaplarını güvenle alıp satmak için güvenilir pazar. Peşin ödeyin veya fiyatı 10 günlük taksitlere bölün. Para platformda bekler, hesap QR ile teslim edilir.",
@@ -182,16 +182,18 @@ function authDlg(mode){
     (mode==="up"?'<label><span>'+t("name")+'</span><input id="an" required maxlength="40"></label>':'')+
     '<label><span>'+t("email")+'</span><input id="ae" type="email" required autocomplete="email"></label>'+
     '<label><span>'+t("password")+'</span><input id="ap" type="password" minlength="6" required autocomplete="'+(mode==="up"?"new-password":"current-password")+'"></label>'+
+    (mode==="up"?'<label><span>'+t("pw2")+'</span><input id="ap2" type="password" minlength="6" required autocomplete="new-password"></label>':'')+
     '<p class="err" id="aerr"></p><button class="btn p" type="submit">'+(mode==="up"?t("signup"):t("login"))+'</button></form>'+
     '<div class="row"><button class="btn" type="button" data-act="oauth" data-id="google">Google</button></div>'+
     '<p class="note"><a href="#" data-act="auth-sw" data-id="'+(mode==="up"?"in":"up")+'">'+(mode==="up"?t("login"):t("signup"))+'</a></p>');
   $("af").addEventListener("submit",async function(e){
     e.preventDefault();
     var em = $("ae").value.trim(), pw = $("ap").value, r;
+    if(mode==="up" && pw!==$("ap2").value){ $("aerr").textContent = t("pw_mis"); return; }
     if(mode==="up") r = await sb.auth.signUp({email:em,password:pw,options:{data:{name:$("an").value.trim()}}});
     else r = await sb.auth.signInWithPassword({email:em,password:pw});
     if(r.error){ $("aerr").textContent = r.error.message; return; }
-    if(mode==="up" && !r.data.session){ $("aerr").textContent = "E-pochtangizga tasdiqlash xati yuborildi."; return; }
+    if(mode==="up" && !r.data.session){ $("aerr").textContent = "E-pochtangizga tasdiqlash xati yuborildi. Xatdagi havolani bosing."; return; }
     closeDlg(); await afterAuth(true);
   });
 }
@@ -244,7 +246,7 @@ function buyDlg(){
   var s = '<h3>'+h(a.id)+' · '+h(a.rank)+'</h3><div class="row"><button type="button" class="btn '+(BUY.mode==="full"?"p":"")+'" data-act="bm" data-id="full">'+t("full")+'</button><button type="button" class="btn '+(BUY.mode==="inst"?"p":"")+'" data-act="bm" data-id="inst">'+t("inst")+'</button></div>';
   if(BUY.mode==="inst") s += '<label><span>'+t("term")+'</span><select id="bt">'+[30,60,90,120].map(function(d){ return '<option value="'+d+'"'+(d===BUY.term?" selected":"")+'>'+d+' '+t("days")+'</option>'; }).join("")+'</select></label><p>'+t("markup")+': '+ST.markup+'% · '+n+' '+t("payn")+'</p>';
   s += '<p>'+t("total")+': <b>'+fmt(tot)+'</b> ≈ '+usd(tot)+'</p>'+(BUY.mode==="inst"?'<p class="price">'+fmt(each)+' <span class="usd">≈ '+usd(each)+'</span></p>':"")+
-    '<p class="note">'+t("rule")+'</p><button class="btn p" type="button" data-act="bgo">'+t("buy")+'</button>';
+    '<p class="note">'+t("rule")+'</p><p class="note">'+t("chek")+' @owner_accSTORE</p><button class="btn p" type="button" data-act="bgo">'+t("buy")+'</button>';
   openDlg(s);
   var bt = $("bt"); if(bt) bt.onchange = function(){ BUY.term = +this.value; buyDlg(); };
 }
@@ -256,9 +258,9 @@ function payDlg(){
   var s = '<h3>'+t("pay_title")+': '+h(d.id)+'</h3><div class="row">'+tabs+'</div><p class="price">'+fmt(amt)+' <span class="usd">≈ '+usd(amt)+'</span></p>';
   if(isU){
     var ua = (Math.ceil(amt/ST.rate*100)/100).toFixed(2);
-    s += '<p>'+ua+' USDT ('+h(ST.net||"TRC20")+')</p><div class="num">'+h(ST.usdt)+'</div><label><span>'+t("txid")+'</span><input id="tx" maxlength="100" autocomplete="off"></label><p class="err" id="perr"></p><button class="btn p" type="button" data-act="pgo">'+t("usdt_send")+'</button>';
+    s += '<p>'+ua+' USDT ('+h(ST.net||"TRC20")+')</p><div class="num">'+h(ST.usdt)+'</div><label><span>'+t("txid")+'</span><input id="tx" maxlength="100" autocomplete="off"></label><p class="err" id="perr"></p><p>'+t("chek")+' <a class="btn sm" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE?text='+encodeURIComponent(d.id+" · USDT")+'">'+t("chek_btn")+'</a></p><button class="btn p" type="button" data-act="pgo">'+t("usdt_send")+'</button>';
   }else if(c){
-    s += '<p>'+t("pay_card")+':</p><div class="num">'+h(c.num)+'</div><div class="row"><button class="btn sm" type="button" data-act="pcopy" data-id="'+h(c.num)+'">'+t("copy")+'</button></div><p class="note">'+t("pay_note")+' ('+h(d.id)+')</p><p class="err" id="perr"></p><button class="btn p" type="button" data-act="pgo">'+t("pay_done")+'</button>';
+    s += '<p>'+t("pay_card")+':</p><div class="num">'+h(c.num)+'</div><div class="row"><button class="btn sm" type="button" data-act="pcopy" data-id="'+h(c.num)+'">'+t("copy")+'</button></div><p class="note">'+t("pay_note")+' ('+h(d.id)+')</p><p>'+t("chek")+' <a class="btn sm" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE?text='+encodeURIComponent(d.id+" · "+fmt(amt)+" UZS")+'">'+t("chek_btn")+'</a></p><p class="err" id="perr"></p><button class="btn p" type="button" data-act="pgo">'+t("pay_done")+'</button>';
   }
   openDlg(s);
 }
