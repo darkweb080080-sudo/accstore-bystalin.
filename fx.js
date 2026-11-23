@@ -1,0 +1,83 @@
+/* Visual effects: starfield, airdrop parachutes, reveal on scroll, card spotlight, progress bar. */
+(function(){
+"use strict";
+var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+var bg = document.getElementById("bg");
+
+/* parachute airdrops: slow drift from top to bottom */
+function chute(c1,c2){
+  return '<svg viewBox="0 0 80 120" aria-hidden="true">'+
+   '<path d="M3 44C3 16 21 3 40 3s37 13 37 41c-6-6-12-6-18.5 0C52 38 46 38 40 44c-6-6-12-6-18.5 0C15 38 9 38 3 44Z" fill="'+c1+'" fill-opacity=".9" stroke="'+c2+'" stroke-width="1.4"/>'+
+   '<path d="M40 3C28 12 24 28 21.5 44M40 3c12 9 16 25 18.5 41M40 3v41" stroke="'+c2+'" stroke-opacity=".7" stroke-width="1" fill="none"/>'+
+   '<path d="M3 44 34 88M21.5 44 36 88M40 44V88M58.5 44 44 88M77 44 46 88" stroke="#cfe8ff" stroke-opacity=".55" stroke-width=".8"/>'+
+   '<rect x="30" y="88" width="20" height="18" rx="2" fill="#1b2347" stroke="'+c2+'" stroke-width="1.4"/>'+
+   '<path d="M30 97h20M40 88v18" stroke="'+c2+'" stroke-opacity=".8" stroke-width="1"/>'+
+   '<circle class="lamp" cx="40" cy="86" r="2.6" fill="#FFC53D"/></svg>';
+}
+if(!reduce && bg){
+  var cfg = [
+    {l:6, w:70, d:62, dl:-6, c:["#27F2FF","#9ff8ff"], dx:"40px", sw:7},
+    {l:24,w:46, d:84, dl:-48,c:["#ff3ddb","#ffb3f2"], dx:"-30px",sw:9},
+    {l:42,w:90, d:74, dl:-20,c:["#6a4bff","#c3b6ff"], dx:"30px", sw:8},
+    {l:63,w:52, d:92, dl:-70,c:["#FFC53D","#ffe29a"], dx:"-40px",sw:10},
+    {l:80,w:78, d:68, dl:-34,c:["#27F2FF","#9ff8ff"], dx:"-20px",sw:7.5},
+    {l:92,w:40, d:100,dl:-85,c:["#ff3ddb","#ffb3f2"], dx:"20px", sw:11}
+  ];
+  if(window.innerWidth<700) cfg = cfg.slice(0,4);
+  cfg.forEach(function(o){
+    var d = document.createElement("div"); d.className = "drop";
+    d.style.cssText = "left:"+o.l+"%;width:"+o.w+"px;animation-duration:"+o.d+"s;animation-delay:"+o.dl+"s;--dx:"+o.dx+";opacity:"+(o.w>60?.85:.6)+";filter:blur("+(o.w<50?1.2:0)+"px)";
+    d.innerHTML = chute(o.c[0],o.c[1]);
+    d.firstChild.style.animationDuration = o.sw+"s";
+    bg.appendChild(d);
+  });
+}
+
+/* starfield with parallax */
+var cv = document.getElementById("stars");
+if(cv && !reduce){
+  var cx = cv.getContext("2d"), W, H, S = [], mx = 0, my = 0, raf, vis = true;
+  var N = window.innerWidth<700 ? 55 : 110;
+  function size(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  size(); window.addEventListener("resize",size);
+  for(var k=0;k<N;k++) S.push({x:Math.random(),y:Math.random(),z:Math.random()*.9+.1,t:Math.random()*6});
+  window.addEventListener("mousemove",function(e){ mx = (e.clientX/W-.5); my = (e.clientY/H-.5); });
+  document.addEventListener("visibilitychange",function(){ vis = !document.hidden; if(vis) loop(); });
+  var t0 = 0;
+  function loop(t){
+    if(!vis) return; raf = requestAnimationFrame(loop);
+    t = t||0; cx.clearRect(0,0,W,H);
+    for(var i=0;i<S.length;i++){
+      var s = S[i]; s.y += .00005*s.z*(t-t0 > 0 ? Math.min(t-t0,50) : 16); if(s.y>1.02){ s.y = -.02; s.x = Math.random(); }
+      var px = s.x*W + mx*30*s.z, py = s.y*H + my*20*s.z, a = .25+.55*Math.abs(Math.sin(t/900+s.t));
+      cx.globalAlpha = a; cx.fillStyle = s.z>.7?"#9ff8ff":s.z>.4?"#ffffff":"#ff9af0";
+      cx.beginPath(); cx.arc(px,py,s.z*1.7,0,6.283); cx.fill();
+    }
+    t0 = t;
+  }
+  loop(0);
+}
+
+/* reveal on scroll + stagger */
+var io = ("IntersectionObserver" in window) ? new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }); },{threshold:.08,rootMargin:"0px 0px -30px 0px"}) : null;
+function tag(){
+  var v = document.getElementById("view"); if(!v) return;
+  var els = v.querySelectorAll(".card:not(.rv),h2:not(.rv),.trust:not(.rv),.hero:not(.rv),.fl:not(.rv),.tw:not(.rv)"), n = 0;
+  Array.prototype.forEach.call(els,function(e){ e.classList.add("rv"); e.style.setProperty("--i",String(n++ % 8)); if(io) io.observe(e); else e.classList.add("in"); });
+}
+new MutationObserver(function(){ tag(); }).observe(document.getElementById("view"),{childList:true,subtree:true});
+tag();
+
+/* card spotlight + tilt */
+document.addEventListener("mousemove",function(e){
+  var c = e.target.closest && e.target.closest(".card"); if(!c) return;
+  var r = c.getBoundingClientRect(), x = e.clientX-r.left, y = e.clientY-r.top;
+  c.style.setProperty("--mx",x+"px"); c.style.setProperty("--my",y+"px");
+  if(!reduce && r.width<460){ c.style.transform = "perspective(700px) rotateX("+(((y/r.height)-.5)*-5).toFixed(2)+"deg) rotateY("+(((x/r.width)-.5)*6).toFixed(2)+"deg) translateY(-4px)"; }
+});
+document.addEventListener("mouseout",function(e){ var c = e.target.closest && e.target.closest(".card"); if(c && !c.contains(e.relatedTarget)) c.style.transform = ""; });
+
+/* scroll progress */
+var pg = document.getElementById("prog");
+window.addEventListener("scroll",function(){ var h = document.documentElement; pg.style.width = (h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+"%"; },{passive:true});
+})();
