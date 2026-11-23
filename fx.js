@@ -123,3 +123,67 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
       var a=Math.max(0,Math.min(1,(e.y/H)))*.8; c.fillStyle="rgba("+e.c+","+a.toFixed(2)+")"; c.shadowColor="rgba("+e.c+",.9)"; c.shadowBlur=8; c.beginPath(); c.arc(e.x,e.y,e.s,0,6.283); c.fill(); }
   })(0);
 })();
+
+/* ===== theme panel: night / day / auto + custom background image ===== */
+(function(){
+  var R = document.documentElement;
+  var TXT = {
+    uz:{t:"Ko'rinish",n:"Tungi",d:"Kunduzgi",a:"Avto (vaqt bo'yicha)",bg:"Orqa fon",sc:"Animatsiyali sahna",im:"Mening rasmim",pick:"Galereyadan rasm tanlash",rm:"Rasmni olib tashlash",dim:"Qoraytirish / yorqinlik",bl:"Xira qilish",fx:"Parashut va effektlar",x:"Yopish",err:"Rasm saqlanmadi. Kichikroq rasm tanlang."},
+    en:{t:"Appearance",n:"Night",d:"Day",a:"Auto (by time)",bg:"Background",sc:"Animated scene",im:"My image",pick:"Choose from gallery",rm:"Remove image",dim:"Overlay strength",bl:"Blur",fx:"Parachutes and effects",x:"Close",err:"Could not save the image. Pick a smaller one."},
+    ru:{t:"Внешний вид",n:"Ночь",d:"День",a:"Авто (по времени)",bg:"Фон",sc:"Анимированная сцена",im:"Моё фото",pick:"Выбрать из галереи",rm:"Убрать фото",dim:"Затемнение",bl:"Размытие",fx:"Парашюты и эффекты",x:"Закрыть",err:"Не удалось сохранить фото. Выберите меньше."},
+    tr:{t:"Görünüm",n:"Gece",d:"Gündüz",a:"Otomatik (saate göre)",bg:"Arka plan",sc:"Animasyonlu sahne",im:"Resmim",pick:"Galeriden seç",rm:"Resmi kaldır",dim:"Karartma",bl:"Bulanıklık",fx:"Paraşüt ve efektler",x:"Kapat",err:"Resim kaydedilemedi. Daha küçük seçin."}
+  };
+  function L(){ return TXT[R.lang] || TXT.en; }
+  function get(k,d){ try{ var v = localStorage.getItem(k); return v==null?d:v; }catch(e){ return d; } }
+  function set(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+  var S = {th:get("th","dark"),bg:get("bgm","scene"),dim:+get("dim","45"),bl:+get("bl","0"),fx:get("fx","1")==="1"};
+  var IMG = get("bgimg","");
+  function eff(){ if(S.th==="auto"){ var h = new Date().getHours(); return (h>=7&&h<19)?"light":"dark"; } return S.th; }
+  function apply(){
+    var th = eff(); R.setAttribute("data-theme",th);
+    var m = document.querySelector('meta[name=theme-color]'); if(!m){ m = document.createElement("meta"); m.name = "theme-color"; document.head.appendChild(m); } m.content = th==="light"?"#eaf1ff":"#05070f";
+    var useImg = S.bg==="image" && IMG; R.classList.toggle("has-img",!!useImg); R.classList.toggle("fx-off",!S.fx);
+    var el = document.getElementById("bgimg"); if(el){ el.style.backgroundImage = useImg ? 'url("'+IMG+'")' : "none"; el.style.setProperty("--bl",S.bl+"px"); }
+    R.style.setProperty("--dim",(S.dim/100).toFixed(2)); R.style.setProperty("--dimc", th==="light"?"255,255,255":"0,0,0");
+  }
+  function save(){ set("th",S.th); set("bgm",S.bg); set("dim",String(S.dim)); set("bl",String(S.bl)); set("fx",S.fx?"1":"0"); }
+  function shrink(file){
+    return new Promise(function(res,rej){
+      var im = new Image(), u = URL.createObjectURL(file);
+      im.onload = function(){ var k = Math.min(1,1920/Math.max(im.width,im.height)), c = document.createElement("canvas"); c.width = Math.round(im.width*k); c.height = Math.round(im.height*k); c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res(c.toDataURL("image/jpeg",.78)); };
+      im.onerror = function(){ rej(new Error("img")); }; im.src = u;
+    });
+  }
+  var dlg = document.createElement("dialog"); dlg.id = "tdlg"; document.body.appendChild(dlg);
+  function btn(on,act,label){ return '<button type="button" class="btn sm '+(on?"on p":"")+'" data-a="'+act+'">'+label+'</button>'; }
+  function draw(){
+    var T = L();
+    dlg.innerHTML = '<h3>'+T.t+'</h3>'+
+      '<div class="tg">'+btn(S.th==="dark","th:dark",T.n)+btn(S.th==="light","th:light",T.d)+btn(S.th==="auto","th:auto",T.a)+'</div>'+
+      '<h3 style="font-size:15px">'+T.bg+'</h3><div class="tg">'+btn(S.bg==="scene","bg:scene",T.sc)+btn(S.bg==="image"&&!!IMG,"bg:image",T.im)+'</div>'+
+      '<div class="tg"><button type="button" class="btn sm" data-a="pick">'+T.pick+'</button>'+(IMG?'<button type="button" class="btn sm bad" data-a="rm">'+T.rm+'</button>':"")+'<input type="file" id="tfile" accept="image/*" hidden></div>'+
+      '<div class="rng"><span>'+T.dim+'</span><input type="range" min="0" max="85" value="'+S.dim+'" data-r="dim"></div>'+
+      '<div class="rng"><span>'+T.bl+'</span><input type="range" min="0" max="14" value="'+S.bl+'" data-r="bl"></div>'+
+      '<label style="flex-direction:row;gap:8px;align-items:center"><input type="checkbox" data-a="fx"'+(S.fx?" checked":"")+'><span>'+T.fx+'</span></label>'+
+      '<p class="err" id="terr"></p><div class="row"><button type="button" class="btn sm" data-a="close">'+T.x+'</button></div>';
+  }
+  dlg.addEventListener("click",function(e){
+    var b = e.target.closest("[data-a]"); if(e.target===dlg){ var rc = dlg.getBoundingClientRect(); if(e.clientX<rc.left||e.clientX>rc.right||e.clientY<rc.top||e.clientY>rc.bottom) dlg.close(); return; } if(!b) return;
+    var a = b.getAttribute("data-a");
+    if(a.indexOf("th:")===0){ S.th = a.slice(3); }
+    else if(a.indexOf("bg:")===0){ if(a==="bg:image" && !IMG){ document.getElementById("tfile").click(); return; } S.bg = a.slice(3); }
+    else if(a==="pick"){ document.getElementById("tfile").click(); return; }
+    else if(a==="rm"){ IMG = ""; try{ localStorage.removeItem("bgimg"); }catch(x){} S.bg = "scene"; }
+    else if(a==="fx"){ S.fx = b.checked; }
+    else if(a==="close"){ dlg.close(); return; }
+    save(); apply(); if(a!=="fx") draw();
+  });
+  dlg.addEventListener("input",function(e){ var r = e.target.getAttribute("data-r"); if(!r) return; S[r] = +e.target.value; save(); apply(); });
+  dlg.addEventListener("change",async function(e){
+    if(e.target.id!=="tfile" || !e.target.files[0]) return;
+    try{ var d = await shrink(e.target.files[0]); if(!set("bgimg",d)){ document.getElementById("terr").textContent = L().err; return; } IMG = d; S.bg = "image"; save(); apply(); draw(); }
+    catch(x){ document.getElementById("terr").textContent = L().err; }
+  });
+  document.getElementById("themeBtn").addEventListener("click",function(){ draw(); dlg.showModal(); });
+  apply();
+})();

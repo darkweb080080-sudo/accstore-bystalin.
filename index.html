@@ -164,14 +164,59 @@ dialog::backdrop{backdrop-filter:blur(6px);animation:fadein .3s}
 .meteor{position:absolute;width:140px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff,rgba(39,242,255,.9));transform:rotate(var(--r,28deg));animation:meteor 1.2s ease-out forwards;box-shadow:0 0 12px rgba(160,230,255,.9)}
 @keyframes meteor{0%{opacity:0;translate:0 0}12%{opacity:1}100%{opacity:0;translate:46vw 28vw}}
 @media(max-width:700px){#bg .plane{width:100px}#bg .zone{width:92vmin}}
+
+/* ===== themes: night / day / custom image ===== */
+.sun,.cloud{display:none}
+#bgimg,#bgdim{position:absolute;inset:0;display:none}
+#bgimg{background-size:cover;background-position:center;transform:scale(1.06);filter:blur(var(--bl,0px))}
+#bgdim{background:rgba(var(--dimc,0,0,0),var(--dim,.45))}
+html.has-img #bgimg,html.has-img #bgdim{display:block}
+html.has-img #bg .blob,html.has-img #bg .grid,html.has-img #bg .rays,html.has-img #bg .zone,html.has-img #bg .mt,html.has-img #bg .fog,html.has-img #bg .plane,html.has-img #bg .sun,html.has-img #bg .cloud,html.has-img #stars{display:none!important}
+html.fx-off .drop,html.fx-off .meteor,html.fx-off #bg canvas{display:none!important}
+html[data-theme=light]{--bg:#eaf1ff;--s:#ffffff;--line:#c5d2f2;--ink:#0e1533;--ink2:#4b5880;--cy:#0891b2;--mg:#c026d3;--gold:#c27b00;--glass:rgba(255,255,255,.72);--dimc:255,255,255}
+html[data-theme=light] body{background:#eaf1ff;color:var(--ink)}
+html[data-theme=light] #bg{background:linear-gradient(#8ec8ff 0%,#cfe6ff 42%,#f3f8ff 100%)}
+html[data-theme=light] #bg .blob{opacity:.16;mix-blend-mode:multiply}
+html[data-theme=light] #bg .grid,html[data-theme=light] #stars,html[data-theme=light] .meteor{display:none}
+html[data-theme=light] #bg .rays{opacity:.5;filter:sepia(1) saturate(3) hue-rotate(-10deg)}
+html[data-theme=light] #bg .zone{border-color:rgba(8,145,178,.4);box-shadow:0 0 40px rgba(8,145,178,.18)}
+html[data-theme=light] #bg .mt path{stroke:rgba(8,145,178,.5)}
+html[data-theme=light] #bg .m1 path{fill:#b4c8ee}html[data-theme=light] #bg .m2 path{fill:#8fa9de}
+html[data-theme=light] #bg .fog{background:linear-gradient(to top,rgba(234,241,255,.96),rgba(234,241,255,0))}
+html[data-theme=light] #bg .plane{filter:drop-shadow(0 2px 6px rgba(20,60,140,.35))}
+html[data-theme=light] .sun{display:block;position:absolute;right:9vw;top:7vh;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#fff6c9 0 28%,#ffd75e 45%,rgba(255,200,60,0) 72%);box-shadow:0 0 120px 60px rgba(255,214,90,.45);animation:sunp 6s ease-in-out infinite alternate}
+@keyframes sunp{to{transform:scale(1.1);box-shadow:0 0 150px 80px rgba(255,214,90,.55)}}
+html[data-theme=light] .cloud{display:block;position:absolute;height:46px;border-radius:50px;background:rgba(255,255,255,.9);filter:blur(1px);box-shadow:0 0 30px rgba(255,255,255,.8);animation:cloud linear infinite}
+html[data-theme=light] .cloud::before,html[data-theme=light] .cloud::after{content:"";position:absolute;background:inherit;border-radius:50%}
+html[data-theme=light] .cloud::before{width:56px;height:56px;left:18px;top:-26px}html[data-theme=light] .cloud::after{width:42px;height:42px;right:22px;top:-18px}
+.cloud.c1{top:14vh;width:150px;animation-duration:90s;animation-delay:-30s}.cloud.c2{top:30vh;width:110px;animation-duration:120s;animation-delay:-80s;opacity:.7}.cloud.c3{top:7vh;width:190px;animation-duration:150s;animation-delay:-10s;opacity:.8}
+@keyframes cloud{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+html[data-theme=light] header{background:rgba(255,255,255,.66);border-bottom-color:#c5d2f2}
+html[data-theme=light] .card{background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(238,244,255,.88));border-color:#c5d2f2;box-shadow:0 8px 24px rgba(40,70,150,.12)}
+html[data-theme=light] .card:hover{box-shadow:0 14px 36px rgba(8,145,178,.22)}
+html[data-theme=light] h1{background-image:linear-gradient(100deg,#0e1533 10%,#0891b2 50%,#c026d3 95%)}
+html[data-theme=light] .price{background-image:linear-gradient(90deg,#0e1533,#0891b2)}
+html[data-theme=light] .msgs{background:#eef3ff}html[data-theme=light] .ph,html[data-theme=light] .sk{background:#dfe8fb}
+html[data-theme=light] .sk{background:linear-gradient(100deg,#e3ebfb 30%,#f6f9ff 50%,#e3ebfb 70%);background-size:300% 100%}
+html[data-theme=light] ::-webkit-scrollbar-track{background:#eaf1ff}
+html[data-theme=light] input,html[data-theme=light] select,html[data-theme=light] textarea{background:#fff;color:#0e1533}
+html[data-theme=light] .lead{color:#3b4770}
+html[data-theme=light] nav.m a{color:var(--ink)}html[data-theme=light] nav.m a.on{color:#0e1533}
+html[data-theme=light] .btn{color:var(--cy)}html[data-theme=light] .btn.p{color:#fff}
+html[data-theme=light] dialog{box-shadow:0 20px 60px rgba(30,50,120,.25)}
+html.has-img .hero h1,html.has-img h2{text-shadow:0 2px 12px rgba(0,0,0,.35)}
+body,header,.card{transition:background-color .5s,color .5s,border-color .5s}
+.tg{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.tg button.on{background:var(--cy);color:#04121A}
+#tdlg .rng{display:flex;align-items:center;gap:10px;margin:8px 0}#tdlg .rng input{flex:1}
 </style>
 </head>
 <body>
-<div id="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="rays"></div><div class="zone"></div><div class="plane"></div><div class="grid"></div><canvas id="stars"></canvas><div class="mt m1" id="m1"></div><div class="mt m2" id="m2"></div><div class="fog"></div></div>
+<div id="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div id="bgimg"></div><div id="bgdim"></div><div class="rays"></div><div class="zone"></div><div class="plane"></div><div class="grid"></div><canvas id="stars"></canvas><div class="mt m1" id="m1"></div><div class="mt m2" id="m2"></div><div class="fog"></div></div>
 <div id="prog"></div>
 <div class="w">
 <header><a class="logo" href="#/" style="text-decoration:none;color:inherit">acc<b>STORE</b>-bySTALIN</a>
-<div class="lang" id="lang" role="group" aria-label="Til"><button data-l="uz">UZ</button> <button data-l="en">EN</button> <button data-l="ru">RU</button> <button data-l="tr">TR</button> <button class="btn sm" id="authBtn" type="button"></button></div></header>
+<div class="lang" id="lang" role="group" aria-label="Til"><button data-l="uz">UZ</button> <button data-l="en">EN</button> <button data-l="ru">RU</button> <button data-l="tr">TR</button> <button class="btn sm" id="themeBtn" type="button" aria-label="Theme">◐</button> <button class="btn sm" id="authBtn" type="button"></button></div></header>
 <div class="row" id="soc"></div>
 <nav class="m" id="nav"></nav>
 <div id="view"><h1>PUBG akkauntlar, tekshirilgan sotuvchilardan</h1><p class="lead">accSTORE-bySTALIN: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. To'liq to'lang yoki narxni 10 kunlik to'lovlarga bo'ling. Pul platformada turadi, akkaunt QR kod orqali beriladi. Tekshirilgan sotuvchilar va hamkorlar.</p><noscript>JavaScript yoqing.</noscript></div>
