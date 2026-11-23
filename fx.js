@@ -187,3 +187,16 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
   document.getElementById("themeBtn").addEventListener("click",function(){ draw(); dlg.showModal(); });
   apply();
 })();
+
+/* ===== intro splash ===== */
+(function(){
+  var R = document.documentElement, el = document.getElementById("intro");
+  if(!el || !R.classList.contains("intro")) return;
+  try{ sessionStorage.setItem("intro","1"); }catch(e){}
+  var done = false, reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function open(){ if(done) return; done = true; el.classList.add("go"); R.classList.add("open"); setTimeout(function(){ R.classList.remove("intro","open"); el.remove(); window.scrollTo(0,0); },1500); }
+  setTimeout(open, reduce ? 300 : 2900);
+  el.addEventListener("click",open);
+  document.addEventListener("keydown",open,{once:true});
+})();
+
