@@ -193,7 +193,7 @@ function authDlg(mode){
     if(mode==="up") r = await sb.auth.signUp({email:em,password:pw,options:{data:{name:$("an").value.trim()}}});
     else r = await sb.auth.signInWithPassword({email:em,password:pw});
     if(r.error){ $("aerr").textContent = r.error.message; return; }
-    if(mode==="up" && !r.data.session){ $("aerr").textContent = "E-pochtangizga tasdiqlash xati yuborildi. Xatdagi havolani bosing."; return; }
+    if(mode==="up" && !r.data.session){ var r2 = await sb.auth.signInWithPassword({email:em,password:pw}); if(r2.error){ $("aerr").textContent = t("err"); return; } }
     closeDlg(); await afterAuth(true);
   });
 }
