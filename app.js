@@ -177,6 +177,12 @@ function vAbout(v){
 }
 
 /* ---------- auth ---------- */
+var AUTHCFG = null;
+async function authCfg(){
+  if(AUTHCFG) return AUTHCFG;
+  try{ var r = await fetch(SB_URL+"/auth/v1/settings",{headers:{apikey:SB_KEY}}); AUTHCFG = await r.json(); }catch(e){ AUTHCFG = {}; }
+  return AUTHCFG;
+}
 function authDlg(mode){
   openDlg('<h3>'+(mode==="up"?t("signup"):t("login"))+'</h3><form id="af" class="fl" style="grid-template-columns:1fr">'+
     (mode==="up"?'<label><span>'+t("name")+'</span><input id="an" required maxlength="40"></label>':'')+
@@ -184,8 +190,9 @@ function authDlg(mode){
     '<label><span>'+t("password")+'</span><input id="ap" type="password" minlength="6" required autocomplete="'+(mode==="up"?"new-password":"current-password")+'"></label>'+
     (mode==="up"?'<label><span>'+t("pw2")+'</span><input id="ap2" type="password" minlength="6" required autocomplete="new-password"></label>':'')+
     '<p class="err" id="aerr"></p><button class="btn p" type="submit">'+(mode==="up"?t("signup"):t("login"))+'</button></form>'+
-    '<div class="row"><button class="btn" type="button" data-act="oauth" data-id="google">Google</button></div>'+
+    '<div class="row" id="oa"></div>'+
     '<p class="note"><a href="#" data-act="auth-sw" data-id="'+(mode==="up"?"in":"up")+'">'+(mode==="up"?t("login"):t("signup"))+'</a></p>');
+  authCfg().then(function(c){ var o = $("oa"); if(o && c.external && c.external.google) o.innerHTML = '<button class="btn" type="button" data-act="oauth" data-id="google">Google</button>'; });
   $("af").addEventListener("submit",async function(e){
     e.preventDefault();
     var em = $("ae").value.trim(), pw = $("ap").value, r;
@@ -193,7 +200,7 @@ function authDlg(mode){
     if(mode==="up") r = await sb.auth.signUp({email:em,password:pw,options:{data:{name:$("an").value.trim()}}});
     else r = await sb.auth.signInWithPassword({email:em,password:pw});
     if(r.error){ $("aerr").textContent = r.error.message; return; }
-    if(mode==="up" && !r.data.session){ var r2 = await sb.auth.signInWithPassword({email:em,password:pw}); if(r2.error){ $("aerr").textContent = t("err"); return; } }
+    if(mode==="up" && !r.data.session){ var r2 = await sb.auth.signInWithPassword({email:em,password:pw}); if(r2.error){ $("aerr").textContent = /not confirmed/i.test(r2.error.message) ? "Hisob ochildi, lekin tasdiqlash talab qilinmoqda. Administratorga yozing: t.me/owner_accSTORE" : r2.error.message; return; } }
     closeDlg(); await afterAuth(true);
   });
 }
@@ -471,11 +478,12 @@ async function aTeam(b){
    (isOwner()?'<h3>Yangi admin tayinlash</h3><div class="row"><select id="nu">'+(ur.data||[]).map(function(u){ return '<option value="'+u.id+'">'+h(u.name)+' ('+h(u.email)+')</option>'; }).join("")+'</select><button class="btn p" data-act="adm-add">Admin qilish (huquqsiz)</button></div>':"");
   window.__T = T;
 }
-function aSet(b){
+async function aSet(b){
   var c = ST.cards||[];
   b.innerHTML = '<form id="sf" class="fl" style="grid-template-columns:1fr;max-width:520px"><label><span>1 dollar necha so\'m</span><input id="sr" type="number" min="1000" value="'+h(ST.rate)+'"></label><label><span>Bo\'lib to\'lash ustamasi, %</span><input id="sm" type="number" min="0" max="100" value="'+h(ST.markup)+'"></label>'+
    [0,1].map(function(i){ var x = c[i]||{}; return '<label><span>Karta '+(i+1)+' nomi</span><input id="cn'+i+'" value="'+h(x.name||"")+'"></label><label><span>Karta '+(i+1)+' raqami</span><input id="cu'+i+'" value="'+h(x.num||"")+'"></label>'; }).join("")+
-   '<label><span>USDT manzil (bo\'sh bo\'lsa USDT usuli ko\'rinmaydi)</span><input id="su" value="'+h(ST.usdt||"")+'"></label><label><span>Tarmoq</span><input id="sn" value="'+h(ST.net||"TRC20")+'"></label><button class="btn p" type="submit">Saqlash</button></form>';
+   '<label><span>USDT manzil (bo\'sh bo\'lsa USDT usuli ko\'rinmaydi)</span><input id="su" value="'+h(ST.usdt||"")+'"></label><label><span>Tarmoq</span><input id="sn" value="'+h(ST.net||"TRC20")+'"></label><button class="btn p" type="submit">Saqlash</button></form><div class="card" id="diag" style="margin-top:14px"><h3>Kirish tizimi holati</h3><p class="note">Tekshirilmoqda...</p></div>';
+  authCfg().then(function(c){ var d = $("diag"); if(!d) return; var ex = c.external||{}; d.innerHTML = '<h3>Kirish tizimi holati</h3><p>Pochta tasdiqlash: '+(c.mailer_autoconfirm?'<span class="chip ok">o\'chiq (xat kerak emas)</span>':'<span class="chip bad">YOQILGAN: yangi foydalanuvchilar kira olmaydi. Supabase, Authentication, Sign In / Providers, Email, Confirm email ni o\'chiring</span>')+'</p><p>Google bilan kirish: '+(ex.google?'<span class="chip ok">yoqilgan</span>':'<span class="chip warn">ulanmagan</span>')+'</p><p>Ro\'yxatdan o\'tish: '+(c.disable_signup?'<span class="chip bad">o\'chirilgan</span>':'<span class="chip ok">ochiq</span>')+'</p>'; });
   $("sf").addEventListener("submit",async function(e){
     e.preventDefault();
     var cards = [0,1].map(function(i){ return {k:i===0?"uz":"visa",name:$("cn"+i).value.trim(),num:$("cu"+i).value.trim()}; }).filter(function(x){ return x.name&&x.num; });

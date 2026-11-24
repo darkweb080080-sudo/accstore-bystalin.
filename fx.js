@@ -3,6 +3,8 @@
 "use strict";
 var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 var bg = document.getElementById("bg");
+(function(){ var m = null; try{ m = localStorage.getItem("lite"); }catch(e){} var weak = (navigator.hardwareConcurrency && navigator.hardwareConcurrency<=4) || (navigator.deviceMemory && navigator.deviceMemory<=4) || window.innerWidth<700; if(m==="1" || (m===null && weak)){ document.documentElement.classList.add("lite"); } })();
+if(document.documentElement.classList.contains("lite")) reduce = true;
 
 /* parachute airdrops: slow drift from top to bottom */
 function chute(c1,c2){
@@ -37,7 +39,7 @@ if(!reduce && bg){
 var cv = document.getElementById("stars");
 if(cv && !reduce){
   var cx = cv.getContext("2d"), W, H, S = [], mx = 0, my = 0, raf, vis = true;
-  var N = window.innerWidth<700 ? 55 : 110;
+  var N = window.innerWidth<700 ? 30 : 70;
   function size(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
   size(); window.addEventListener("resize",size);
   for(var k=0;k<N;k++) S.push({x:Math.random(),y:Math.random(),z:Math.random()*.9+.1,t:Math.random()*6});
@@ -111,7 +113,7 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
   (function loopM(){ setTimeout(function(){ meteor(); if(Math.random()<.3) setTimeout(meteor,250); loopM(); },2500+Math.random()*5500); })();
   /* embers rising from the horizon */
   var cv=document.createElement("canvas"); cv.style.cssText="position:absolute;inset:0;width:100%;height:100%"; bgEl.insertBefore(cv,document.getElementById("m1"));
-  var c=cv.getContext("2d"),W,H,E=[],N=innerWidth<700?18:36;
+  var c=cv.getContext("2d"),W,H,E=[],N=innerWidth<700?10:20;
   function sz(){ W=cv.width=innerWidth; H=cv.height=innerHeight; } sz(); addEventListener("resize",sz);
   function mk(init){ return {x:Math.random()*W,y:init?Math.random()*H:H+10,v:.25+Math.random()*.7,s:1+Math.random()*2.2,p:Math.random()*6.3,c:Math.random()<.7?"255,197,61":"39,242,255"}; }
   for(var k=0;k<N;k++) E.push(mk(true));
@@ -120,7 +122,7 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
     requestAnimationFrame(draw); if(document.hidden) return;
     var dt=Math.min(t-last,50)||16; last=t; c.clearRect(0,0,W,H);
     for(var i=0;i<E.length;i++){ var e=E[i]; e.y-=e.v*dt*.045; e.x+=Math.sin(t/1200+e.p)*.25; if(e.y<-10){ E[i]=mk(false); continue; }
-      var a=Math.max(0,Math.min(1,(e.y/H)))*.8; c.fillStyle="rgba("+e.c+","+a.toFixed(2)+")"; c.shadowColor="rgba("+e.c+",.9)"; c.shadowBlur=8; c.beginPath(); c.arc(e.x,e.y,e.s,0,6.283); c.fill(); }
+      var a=Math.max(0,Math.min(1,(e.y/H)))*.8; c.fillStyle="rgba("+e.c+","+a.toFixed(2)+")"; c.beginPath(); c.arc(e.x,e.y,e.s,0,6.283); c.fill(); }
   })(0);
 })();
 
@@ -128,10 +130,10 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
 (function(){
   var R = document.documentElement;
   var TXT = {
-    uz:{t:"Ko'rinish",n:"Tungi",d:"Kunduzgi",a:"Avto (vaqt bo'yicha)",bg:"Orqa fon",sc:"Animatsiyali sahna",im:"Mening rasmim",pick:"Galereyadan rasm tanlash",rm:"Rasmni olib tashlash",dim:"Qoraytirish / yorqinlik",bl:"Xira qilish",fx:"Parashut va effektlar",x:"Yopish",err:"Rasm saqlanmadi. Kichikroq rasm tanlang."},
-    en:{t:"Appearance",n:"Night",d:"Day",a:"Auto (by time)",bg:"Background",sc:"Animated scene",im:"My image",pick:"Choose from gallery",rm:"Remove image",dim:"Overlay strength",bl:"Blur",fx:"Parachutes and effects",x:"Close",err:"Could not save the image. Pick a smaller one."},
-    ru:{t:"Внешний вид",n:"Ночь",d:"День",a:"Авто (по времени)",bg:"Фон",sc:"Анимированная сцена",im:"Моё фото",pick:"Выбрать из галереи",rm:"Убрать фото",dim:"Затемнение",bl:"Размытие",fx:"Парашюты и эффекты",x:"Закрыть",err:"Не удалось сохранить фото. Выберите меньше."},
-    tr:{t:"Görünüm",n:"Gece",d:"Gündüz",a:"Otomatik (saate göre)",bg:"Arka plan",sc:"Animasyonlu sahne",im:"Resmim",pick:"Galeriden seç",rm:"Resmi kaldır",dim:"Karartma",bl:"Bulanıklık",fx:"Paraşüt ve efektler",x:"Kapat",err:"Resim kaydedilemedi. Daha küçük seçin."}
+    uz:{t:"Ko'rinish",n:"Tungi",d:"Kunduzgi",a:"Avto (vaqt bo'yicha)",bg:"Orqa fon",sc:"Animatsiyali sahna",im:"Mening rasmim",pick:"Galereyadan rasm tanlash",rm:"Rasmni olib tashlash",dim:"Qoraytirish / yorqinlik",bl:"Xira qilish",fx:"Parashut va effektlar",x:"Yopish",lite:"Yengil rejim (telefon va sekin qurilmalar uchun tezroq)",err:"Rasm saqlanmadi. Kichikroq rasm tanlang."},
+    en:{t:"Appearance",n:"Night",d:"Day",a:"Auto (by time)",bg:"Background",sc:"Animated scene",im:"My image",pick:"Choose from gallery",rm:"Remove image",dim:"Overlay strength",bl:"Blur",fx:"Parachutes and effects",x:"Close",lite:"Lite mode (faster on slow devices)",err:"Could not save the image. Pick a smaller one."},
+    ru:{t:"Внешний вид",n:"Ночь",d:"День",a:"Авто (по времени)",bg:"Фон",sc:"Анимированная сцена",im:"Моё фото",pick:"Выбрать из галереи",rm:"Убрать фото",dim:"Затемнение",bl:"Размытие",fx:"Парашюты и эффекты",x:"Закрыть",lite:"Лёгкий режим (быстрее на слабых устройствах)",err:"Не удалось сохранить фото. Выберите меньше."},
+    tr:{t:"Görünüm",n:"Gece",d:"Gündüz",a:"Otomatik (saate göre)",bg:"Arka plan",sc:"Animasyonlu sahne",im:"Resmim",pick:"Galeriden seç",rm:"Resmi kaldır",dim:"Karartma",bl:"Bulanıklık",fx:"Paraşüt ve efektler",x:"Kapat",lite:"Hafif mod (yavaş cihazlarda daha hızlı)",err:"Resim kaydedilemedi. Daha küçük seçin."}
   };
   function L(){ return TXT[R.lang] || TXT.en; }
   function get(k,d){ try{ var v = localStorage.getItem(k); return v==null?d:v; }catch(e){ return d; } }
@@ -165,6 +167,7 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
       '<div class="rng"><span>'+T.dim+'</span><input type="range" min="0" max="85" value="'+S.dim+'" data-r="dim"></div>'+
       '<div class="rng"><span>'+T.bl+'</span><input type="range" min="0" max="14" value="'+S.bl+'" data-r="bl"></div>'+
       '<label style="flex-direction:row;gap:8px;align-items:center"><input type="checkbox" data-a="fx"'+(S.fx?" checked":"")+'><span>'+T.fx+'</span></label>'+
+      '<label style="flex-direction:row;gap:8px;align-items:center"><input type="checkbox" data-a="lite"'+(R.classList.contains("lite")?" checked":"")+'><span>'+T.lite+'</span></label>'+
       '<p class="err" id="terr"></p><div class="row"><button type="button" class="btn sm" data-a="close">'+T.x+'</button></div>';
   }
   dlg.addEventListener("click",function(e){
@@ -175,6 +178,7 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
     else if(a==="pick"){ document.getElementById("tfile").click(); return; }
     else if(a==="rm"){ IMG = ""; try{ localStorage.removeItem("bgimg"); }catch(x){} S.bg = "scene"; }
     else if(a==="fx"){ S.fx = b.checked; }
+    else if(a==="lite"){ set("lite",b.checked?"1":"0"); location.reload(); return; }
     else if(a==="close"){ dlg.close(); return; }
     save(); apply(); if(a!=="fx") draw();
   });
