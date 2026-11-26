@@ -294,6 +294,17 @@ body{font-family:Manrope,Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-se
 .tk{font-style:normal;margin-left:4px;color:var(--ink2);letter-spacing:-2px}.tk.rd{color:#27c3ff}
 .tgf{margin-top:8px;flex-wrap:nowrap}
 .remind{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0;padding:10px 14px;border:1px solid rgba(255,180,58,.5);border-radius:10px;background:rgba(255,180,58,.08);font-size:14px}.remind span{flex:1;min-width:200px}
+
+/* perf v4: tez ishlash uchun og'ir effektlar o'chirildi */
+header,.gatec,nav.m a,.trust span,.card,dialog::backdrop,dialog{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+header{background:rgba(5,7,15,.94)}html[data-theme=light] header{background:rgba(255,255,255,.96)}
+#bg .blob{filter:none!important;-webkit-mask-image:radial-gradient(closest-side,#000,transparent);mask-image:radial-gradient(closest-side,#000,transparent)}
+.drop,.drop svg,#bg .plane,#bg .zone{filter:none!important}
+#view{animation:none!important}.btn.p::after{display:none}.logo{animation:none}
+#list .card{content-visibility:auto;contain-intrinsic-size:auto 560px}
+.card{transition:border-color .2s,box-shadow .2s}
+html,body{scroll-behavior:auto}
+.avd{width:100%;max-height:320px;border-radius:8px;background:#000;margin:6px 0}.vp{height:6px;background:var(--line);border-radius:4px;overflow:hidden}.vp i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cy),var(--mg))}
 </style>
 </head>
 <body>
