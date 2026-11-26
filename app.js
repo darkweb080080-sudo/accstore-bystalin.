@@ -7,7 +7,7 @@ var sb = window.supabase.createClient(SB_URL, SB_KEY);
 
 /* ---------- i18n ---------- */
 var D = {
-uz:{exists:"Bu e-pochta oldin ro'yxatdan o'tgan. Kirish bo'limidan kiring.",otp_t:"E-pochtani tasdiqlash",otp_msg:"6 xonali kod yuborildi:",otp_ph:"Tasdiqlash kodi",otp_go:"Tasdiqlash",otp_resend:"Kodni qayta yuborish",otp_bad:"Kod noto'g'ri yoki eskirgan.",otp_sent:"Kod qayta yuborildi.",pw2:"Parolni qayta kiriting",pw_mis:"Parollar mos kelmadi.",chek:"To'lov chekini (skrinshot) egamizga Telegramda yuboring:",chek_btn:"Chekni Telegramga yuborish",tr1:"Pul platformada saqlanadi",tr2:"QR orqali topshirish",tr3:"10 kunlik to'lovlar",tr4:"Tekshirilgan sotuvchilar",nav_market:"Bozor",nav_deals:"Bitimlarim",nav_sell:"Sotuvchi kabineti",nav_chat:"Chat",nav_partner:"Hamkor bo'lish",nav_rent:"Arenda · tez orada",nav_uc:"UC xizmati · tez orada",nav_about:"Biz haqimizda",nav_admin:"Admin paneli",
+uz:{nav_profile:"Profil",prof_t:"Profil",prof_name:"Ism",prof_nick:"Nikneym (lotin harf, raqam, _)",prof_pfp:"Rasm (PFP) tanlash",prof_rm:"Rasmni olib tashlash",prof_save:"Saqlash",prof_pw:"Parolni o'zgartirish",prof_newpw:"Yangi parol",nick_taken:"Bu nikneym band.",nick_fmt:"Nik 3-24 belgi: lotin harf, raqam yoki _.",saved:"Saqlandi",saved_btn:"Saqlash",forgot:"Parolni unutdim",reset_t:"Parolni tiklash",reset_msg:"Kod yuborildi:",reset_go:"Parolni yangilash",reset_ok:"Parol yangilandi",reset_link:"Xatdagi kodni kiriting yoki xatdagi havolani bosing.",chek_req:"DIQQAT: to'lov chekini (skrinshot) Telegramda egamizga yuborish MAJBURIY. Chek yuborilmasa, to'lov tasdiqlanmaydi va akkaunt berilmaydi.",chek_chk:"Chekni Telegramda yubordim",chek_need:"Avval chekni yuboring va belgini qo'ying.",exists:"Bu e-pochta oldin ro'yxatdan o'tgan. Kirish bo'limidan kiring.",otp_t:"E-pochtani tasdiqlash",otp_msg:"6 xonali kod yuborildi:",otp_ph:"Tasdiqlash kodi",otp_go:"Tasdiqlash",otp_resend:"Kodni qayta yuborish",otp_bad:"Kod noto'g'ri yoki eskirgan.",otp_sent:"Kod qayta yuborildi.",pw2:"Parolni qayta kiriting",pw_mis:"Parollar mos kelmadi.",chek:"To'lov chekini (skrinshot) egamizga Telegramda yuboring:",chek_btn:"Chekni Telegramga yuborish",tr1:"Pul platformada saqlanadi",tr2:"QR orqali topshirish",tr3:"10 kunlik to'lovlar",tr4:"Tekshirilgan sotuvchilar",nav_market:"Bozor",nav_deals:"Bitimlarim",nav_sell:"Sotuvchi kabineti",nav_chat:"Chat",nav_partner:"Hamkor bo'lish",nav_rent:"Arenda · tez orada",nav_uc:"UC xizmati · tez orada",nav_about:"Biz haqimizda",nav_admin:"Admin paneli",
  login:"Kirish",logout:"Chiqish",signup:"Ro'yxatdan o'tish",email:"E-pochta",password:"Parol (kamida 6 belgi)",name:"Ism",
  soc_report:"Report, takliflar, hamkorlik",soc_chan:"Rasmiy kanal",soc_ig:"Instagram: tez orada",
  h1:"PUBG akkauntlar, tekshirilgan sotuvchilardan",lead:"SAVDO byOXYGEN: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. To'liq to'lang yoki narxni 10 kunlik to'lovlarga bo'ling. Pul platformada turadi, akkaunt QR kod orqali beriladi.",
@@ -32,7 +32,7 @@ uz:{exists:"Bu e-pochta oldin ro'yxatdan o'tgan. Kirish bo'limidan kiring.",otp_
  pt_nick:"Nikneym",pt_chan:"Kanal havolasi (https://...)",pt_bio:"Qisqa tavsif",pt_send:"Ariza yuborish",pt_wait:"Arizangiz ko'rib chiqilmoqda.",pt_code:"Kanalingizga arizangiz kodini e'lon qiling: {c}",pt_taken:"Bu nik band yoki juda o'xshash.",pt_is:"Siz tasdiqlangan hamkorsiz",
  pt_ver:"Tasdiqlangan hamkor",pt_open:"Kanalga o'tish",pt_msg:"Hamkorga yozish",pt_none:"Hozircha e'lon yo'q.",pt_nf:"Hamkor topilmadi.",
  ok:"Bajarildi",err:"Xatolik. Qayta urinib ko'ring.",banned:"Hisobingiz bloklangan.",close:"Yopish",rank_all:"Hammasi"},
-en:{exists:"This email is already registered. Please sign in.",otp_t:"Verify your email",otp_msg:"A 6-digit code was sent to:",otp_ph:"Verification code",otp_go:"Verify",otp_resend:"Resend code",otp_bad:"Wrong or expired code.",otp_sent:"Code resent.",pw2:"Repeat password",pw_mis:"Passwords do not match.",chek:"Send the payment receipt (screenshot) to the owner on Telegram:",chek_btn:"Send receipt on Telegram",tr1:"Money held by the platform",tr2:"QR handover",tr3:"10-day installments",tr4:"Verified sellers",nav_market:"Market",nav_deals:"My deals",nav_sell:"Seller area",nav_chat:"Chat",nav_partner:"Become a partner",nav_rent:"Rental · coming soon",nav_uc:"UC service · coming soon",nav_about:"About us",nav_admin:"Admin panel",
+en:{nav_profile:"Profile",prof_t:"Profile",prof_name:"Name",prof_nick:"Nickname (letters, digits, _)",prof_pfp:"Choose profile picture",prof_rm:"Remove picture",prof_save:"Save",prof_pw:"Change password",prof_newpw:"New password",nick_taken:"This nickname is taken.",nick_fmt:"3-24 characters: letters, digits or _.",saved:"Saved",saved_btn:"Save",forgot:"Forgot password",reset_t:"Reset password",reset_msg:"A code was sent to:",reset_go:"Update password",reset_ok:"Password updated",reset_link:"Enter the code from the email or click the link in the email.",chek_req:"ATTENTION: sending the payment receipt (screenshot) to the owner on Telegram is REQUIRED. Without it the payment will not be confirmed and the account will not be released.",chek_chk:"I sent the receipt on Telegram",chek_need:"Send the receipt first and tick the box.",exists:"This email is already registered. Please sign in.",otp_t:"Verify your email",otp_msg:"A 6-digit code was sent to:",otp_ph:"Verification code",otp_go:"Verify",otp_resend:"Resend code",otp_bad:"Wrong or expired code.",otp_sent:"Code resent.",pw2:"Repeat password",pw_mis:"Passwords do not match.",chek:"Send the payment receipt (screenshot) to the owner on Telegram:",chek_btn:"Send receipt on Telegram",tr1:"Money held by the platform",tr2:"QR handover",tr3:"10-day installments",tr4:"Verified sellers",nav_market:"Market",nav_deals:"My deals",nav_sell:"Seller area",nav_chat:"Chat",nav_partner:"Become a partner",nav_rent:"Rental · coming soon",nav_uc:"UC service · coming soon",nav_about:"About us",nav_admin:"Admin panel",
  login:"Sign in",logout:"Sign out",signup:"Sign up",email:"Email",password:"Password (min 6 chars)",name:"Name",
  soc_report:"Reports, offers, partnership",soc_chan:"Official channel",soc_ig:"Instagram: coming soon",
  h1:"PUBG accounts from verified sellers",lead:"SAVDO byOXYGEN is a trusted marketplace for buying and selling PUBG Mobile accounts safely. Pay in full or split the price into 10-day payments. Money stays on the platform, the account is handed over by QR code.",
@@ -57,7 +57,7 @@ en:{exists:"This email is already registered. Please sign in.",otp_t:"Verify you
  pt_nick:"Nickname",pt_chan:"Channel link (https://...)",pt_bio:"Short bio",pt_send:"Send application",pt_wait:"Your application is under review.",pt_code:"Post your application code on your channel: {c}",pt_taken:"This nickname is taken or too similar.",pt_is:"You are a verified partner",
  pt_ver:"Verified partner",pt_open:"Open channel",pt_msg:"Message the partner",pt_none:"No listings yet.",pt_nf:"Partner not found.",
  ok:"Done",err:"Error. Please try again.",banned:"Your account is blocked.",close:"Close",rank_all:"All"},
-ru:{exists:"Этот e-mail уже зарегистрирован. Войдите.",otp_t:"Подтверждение e-mail",otp_msg:"6-значный код отправлен на:",otp_ph:"Код подтверждения",otp_go:"Подтвердить",otp_resend:"Отправить код ещё раз",otp_bad:"Неверный или просроченный код.",otp_sent:"Код отправлен повторно.",pw2:"Повторите пароль",pw_mis:"Пароли не совпадают.",chek:"Отправьте чек об оплате (скриншот) владельцу в Telegram:",chek_btn:"Отправить чек в Telegram",tr1:"Деньги хранятся на платформе",tr2:"Передача по QR",tr3:"Платежи каждые 10 дней",tr4:"Проверенные продавцы",nav_market:"Рынок",nav_deals:"Мои сделки",nav_sell:"Кабинет продавца",nav_chat:"Чат",nav_partner:"Стать партнёром",nav_rent:"Аренда · скоро",nav_uc:"UC · скоро",nav_about:"О нас",nav_admin:"Админ-панель",
+ru:{nav_profile:"Профиль",prof_t:"Профиль",prof_name:"Имя",prof_nick:"Ник (латиница, цифры, _)",prof_pfp:"Выбрать фото профиля",prof_rm:"Убрать фото",prof_save:"Сохранить",prof_pw:"Сменить пароль",prof_newpw:"Новый пароль",nick_taken:"Этот ник занят.",nick_fmt:"3-24 символа: латиница, цифры или _.",saved:"Сохранено",saved_btn:"Сохранить",forgot:"Забыли пароль",reset_t:"Восстановление пароля",reset_msg:"Код отправлен на:",reset_go:"Обновить пароль",reset_ok:"Пароль обновлён",reset_link:"Введите код из письма или перейдите по ссылке в письме.",chek_req:"ВНИМАНИЕ: отправить чек об оплате (скриншот) владельцу в Telegram ОБЯЗАТЕЛЬНО. Без чека оплата не подтверждается и аккаунт не выдаётся.",chek_chk:"Я отправил чек в Telegram",chek_need:"Сначала отправьте чек и поставьте галочку.",exists:"Этот e-mail уже зарегистрирован. Войдите.",otp_t:"Подтверждение e-mail",otp_msg:"6-значный код отправлен на:",otp_ph:"Код подтверждения",otp_go:"Подтвердить",otp_resend:"Отправить код ещё раз",otp_bad:"Неверный или просроченный код.",otp_sent:"Код отправлен повторно.",pw2:"Повторите пароль",pw_mis:"Пароли не совпадают.",chek:"Отправьте чек об оплате (скриншот) владельцу в Telegram:",chek_btn:"Отправить чек в Telegram",tr1:"Деньги хранятся на платформе",tr2:"Передача по QR",tr3:"Платежи каждые 10 дней",tr4:"Проверенные продавцы",nav_market:"Рынок",nav_deals:"Мои сделки",nav_sell:"Кабинет продавца",nav_chat:"Чат",nav_partner:"Стать партнёром",nav_rent:"Аренда · скоро",nav_uc:"UC · скоро",nav_about:"О нас",nav_admin:"Админ-панель",
  login:"Войти",logout:"Выйти",signup:"Регистрация",email:"E-mail",password:"Пароль (от 6 символов)",name:"Имя",
  soc_report:"Жалобы, предложения, партнёрство",soc_chan:"Официальный канал",soc_ig:"Instagram: скоро",
  h1:"Аккаунты PUBG от проверенных продавцов",lead:"SAVDO byOXYGEN: надёжная площадка для безопасной покупки и продажи аккаунтов PUBG Mobile. Платите сразу или делите цену на платежи каждые 10 дней. Деньги хранятся на платформе, аккаунт передаётся по QR.",
@@ -82,7 +82,7 @@ ru:{exists:"Этот e-mail уже зарегистрирован. Войдит�
  pt_nick:"Ник",pt_chan:"Ссылка на канал (https://...)",pt_bio:"Коротко о себе",pt_send:"Отправить заявку",pt_wait:"Заявка на рассмотрении.",pt_code:"Опубликуйте код заявки на канале: {c}",pt_taken:"Ник занят или слишком похож.",pt_is:"Вы подтверждённый партнёр",
  pt_ver:"Проверенный партнёр",pt_open:"Открыть канал",pt_msg:"Написать партнёру",pt_none:"Объявлений пока нет.",pt_nf:"Партнёр не найден.",
  ok:"Готово",err:"Ошибка. Попробуйте ещё раз.",banned:"Ваш аккаунт заблокирован.",close:"Закрыть",rank_all:"Все"},
-tr:{exists:"Bu e-posta zaten kayıtlı. Giriş yapın.",otp_t:"E-posta doğrulama",otp_msg:"6 haneli kod gönderildi:",otp_ph:"Doğrulama kodu",otp_go:"Doğrula",otp_resend:"Kodu tekrar gönder",otp_bad:"Kod yanlış veya süresi doldu.",otp_sent:"Kod tekrar gönderildi.",pw2:"Şifreyi tekrarlayın",pw_mis:"Şifreler eşleşmiyor.",chek:"Ödeme dekontunu (ekran görüntüsü) Telegram'dan sahibe gönderin:",chek_btn:"Dekontu Telegram'dan gönder",tr1:"Para platformda bekler",tr2:"QR ile teslim",tr3:"10 günlük taksit",tr4:"Doğrulanmış satıcılar",nav_market:"Pazar",nav_deals:"Anlaşmalarım",nav_sell:"Satıcı paneli",nav_chat:"Sohbet",nav_partner:"Ortak ol",nav_rent:"Kiralama · yakında",nav_uc:"UC hizmeti · yakında",nav_about:"Hakkımızda",nav_admin:"Yönetim paneli",
+tr:{nav_profile:"Profil",prof_t:"Profil",prof_name:"Ad",prof_nick:"Takma ad (harf, rakam, _)",prof_pfp:"Profil resmi seç",prof_rm:"Resmi kaldır",prof_save:"Kaydet",prof_pw:"Şifre değiştir",prof_newpw:"Yeni şifre",nick_taken:"Bu takma ad alınmış.",saved:"Kaydedildi",saved_btn:"Kaydet",forgot:"Şifremi unuttum",reset_t:"Şifre sıfırlama",reset_msg:"Kod gönderildi:",reset_go:"Şifreyi güncelle",reset_ok:"Şifre güncellendi",chek_req:"DİKKAT: ödeme dekontunu (ekran görüntüsü) Telegram'dan sahibe göndermek ZORUNLUDUR. Dekont olmadan ödeme onaylanmaz.",chek_chk:"Dekontu Telegram'dan gönderdim",exists:"Bu e-posta zaten kayıtlı. Giriş yapın.",otp_t:"E-posta doğrulama",otp_msg:"6 haneli kod gönderildi:",otp_ph:"Doğrulama kodu",otp_go:"Doğrula",otp_resend:"Kodu tekrar gönder",otp_bad:"Kod yanlış veya süresi doldu.",otp_sent:"Kod tekrar gönderildi.",pw2:"Şifreyi tekrarlayın",pw_mis:"Şifreler eşleşmiyor.",chek:"Ödeme dekontunu (ekran görüntüsü) Telegram'dan sahibe gönderin:",chek_btn:"Dekontu Telegram'dan gönder",tr1:"Para platformda bekler",tr2:"QR ile teslim",tr3:"10 günlük taksit",tr4:"Doğrulanmış satıcılar",nav_market:"Pazar",nav_deals:"Anlaşmalarım",nav_sell:"Satıcı paneli",nav_chat:"Sohbet",nav_partner:"Ortak ol",nav_rent:"Kiralama · yakında",nav_uc:"UC hizmeti · yakında",nav_about:"Hakkımızda",nav_admin:"Yönetim paneli",
  login:"Giriş",logout:"Çıkış",signup:"Kayıt ol",email:"E-posta",password:"Şifre (en az 6 karakter)",name:"Ad",
  soc_report:"Şikayet, öneri, ortaklık",soc_chan:"Resmi kanal",soc_ig:"Instagram: yakında",
  h1:"Doğrulanmış satıcılardan PUBG hesapları",lead:"SAVDO byOXYGEN: PUBG Mobile hesaplarını güvenle alıp satmak için güvenilir pazar. Peşin ödeyin veya fiyatı 10 günlük taksitlere bölün. Para platformda bekler, hesap QR ile teslim edilir.",
@@ -130,13 +130,16 @@ async function loadMe(){
   var r = await sb.from("profiles").select("*").eq("id",SESS.user.id).maybeSingle();
   ME = r.data || null;
 }
+var AVT = {};
 async function names(ids){
   var need = ids.filter(function(i){ return i && !NAMES[i]; });
   if(!need.length) return;
-  var r = await sb.from("public_names").select("id,name").in("id",need);
-  (r.data||[]).forEach(function(x){ NAMES[x.id] = x.name || "?"; });
+  var r = await sb.from("public_names").select("id,name,nick,avatar").in("id",need);
+  if(r.error) r = await sb.from("public_names").select("id,name").in("id",need);
+  (r.data||[]).forEach(function(x){ NAMES[x.id] = x.nick || x.name || "?"; if(x.avatar) AVT[x.id] = x.avatar; });
 }
 function nm(id){ return NAMES[id] || String(id||"").slice(0,6); }
+function av(id,sz){ var u = AVT[id]; sz = sz||22; return u ? '<img alt="" src="'+h(u)+'" style="width:'+sz+'px;height:'+sz+'px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:6px">' : ""; }
 
 /* ---------- routing ---------- */
 var route = "market", arg = null, poll = null;
@@ -146,12 +149,12 @@ function parse(){
   var p = hs.split("/"); route = p[0] || "market"; arg = p[1] || null;
 }
 function nav(){
-  var items = [["market","nav_market"],["deals","nav_deals"],["sell","nav_sell"],["chat","nav_chat"],["partner","nav_partner"],["rent","nav_rent"],["uc","nav_uc"],["about","nav_about"]];
+  var items = [["market","nav_market"],["deals","nav_deals"],["sell","nav_sell"],["chat","nav_chat"],["profile","nav_profile"],["partner","nav_partner"],["rent","nav_rent"],["uc","nav_uc"],["about","nav_about"]];
   var o = items.map(function(i){ return '<a href="#/'+(i[0]==="market"?"":i[0])+'" class="'+(route===i[0]?"on":"")+'">'+t(i[1])+'</a>'; }).join("");
   if(isStaff()) o += '<a href="#/admin" class="'+(route==="admin"?"on":"")+'">'+t("nav_admin")+(isOwner()?" · EGA":"")+'</a>';
   $("nav").innerHTML = o;
   $("soc").innerHTML = '<a class="btn sm" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE">'+t("soc_report")+'</a> <a class="btn sm" target="_blank" rel="noopener" href="https://t.me/STOREe_ACC">'+t("soc_chan")+'</a> <a class="btn sm" target="_blank" rel="noopener" href="https://www.youtube.com/@oxygenpubgmobileGG">YouTube</a> <span class="soon">'+t("soc_ig")+'</span>';
-  $("authBtn").textContent = SESS ? t("logout")+" ("+h((ME&&ME.name)||"")+")" : t("login");
+  $("authBtn").innerHTML = SESS ? (ME&&ME.avatar?'<img alt="" src="'+h(ME.avatar)+'" style="width:20px;height:20px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:6px">':"")+t("logout") : t("login");
   Array.prototype.forEach.call(document.querySelectorAll("#lang button[data-l]"),function(b){ b.style.opacity = b.getAttribute("data-l")===LG?1:.6; });
 }
 async function render(){
@@ -162,6 +165,7 @@ async function render(){
     else if(route==="deals") await vDeals(v);
     else if(route==="sell") await vSell(v);
     else if(route==="chat") await vChat(v);
+    else if(route==="profile") await vProfile(v);
     else if(route==="partner") await vPartner(v);
     else if(route==="kanal") await vKanal(v);
     else if(route==="admin") await vAdmin(v);
@@ -177,6 +181,21 @@ function vAbout(v){
 }
 
 /* ---------- auth ---------- */
+function newPwDlg(){
+  openDlg('<h3>'+t("reset_t")+'</h3><form id="nf" class="fl" style="grid-template-columns:1fr"><label><span>'+t("prof_newpw")+'</span><input id="n1" type="password" minlength="6" required autocomplete="new-password"></label><label><span>'+t("pw2")+'</span><input id="n2" type="password" minlength="6" required autocomplete="new-password"></label><p class="err" id="nerr"></p><button class="btn p" type="submit">'+t("saved_btn")+'</button></form>');
+  $("nf").addEventListener("submit",async function(e){ e.preventDefault(); if($("n1").value!==$("n2").value){ $("nerr").textContent = t("pw_mis"); return; } var r = await sb.auth.updateUser({password:$("n1").value}); if(r.error){ $("nerr").textContent = r.error.message; return; } closeDlg(); toast(t("reset_ok")); await afterAuth(false); });
+}
+function resetDlg(em){
+  openDlg('<h3>'+t("reset_t")+'</h3><p>'+t("reset_msg")+' <b>'+h(em)+'</b></p><form id="rf" class="fl" style="grid-template-columns:1fr"><label><span>'+t("otp_ph")+'</span><input id="rc" inputmode="numeric" maxlength="10" autocomplete="one-time-code"></label><label><span>'+t("prof_newpw")+'</span><input id="r1" type="password" minlength="6" autocomplete="new-password"></label><label><span>'+t("pw2")+'</span><input id="r2" type="password" minlength="6" autocomplete="new-password"></label><p class="err" id="rerr"></p><button class="btn p" type="submit">'+t("reset_go")+'</button></form>');
+  $("rf").addEventListener("submit",async function(e){
+    e.preventDefault(); var er = $("rerr");
+    if(!$("rc").value.trim()){ er.textContent = t("reset_link"); return; }
+    if($("r1").value!==$("r2").value){ er.textContent = t("pw_mis"); return; }
+    var v = await sb.auth.verifyOtp({email:em,token:$("rc").value.trim(),type:"recovery"}); if(v.error){ er.textContent = t("otp_bad"); return; }
+    var u = await sb.auth.updateUser({password:$("r1").value}); if(u.error){ er.textContent = u.error.message; return; }
+    closeDlg(); toast(t("reset_ok")); await afterAuth(false);
+  });
+}
 function otpDlg(em){
   openDlg('<h3>'+t("otp_t")+'</h3><p>'+t("otp_msg")+' <b>'+h(em)+'</b></p><form id="of" class="fl" style="grid-template-columns:1fr"><label><span>'+t("otp_ph")+'</span><input id="oc" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" maxlength="10" required></label><p class="err" id="oerr"></p><button class="btn p" type="submit">'+t("otp_go")+'</button></form><p class="note"><a href="#" id="ors">'+t("otp_resend")+'</a></p>');
   $("of").addEventListener("submit",async function(e){
@@ -199,7 +218,7 @@ function authDlg(mode){
     (mode==="up"?'<label><span>'+t("pw2")+'</span><input id="ap2" type="password" minlength="6" required autocomplete="new-password"></label>':'')+
     '<p class="err" id="aerr"></p><button class="btn p" type="submit">'+(mode==="up"?t("signup"):t("login"))+'</button></form>'+
     '<div class="row" id="oa"></div>'+
-    '<p class="note"><a href="#" data-act="auth-sw" data-id="'+(mode==="up"?"in":"up")+'">'+(mode==="up"?t("login"):t("signup"))+'</a></p>');
+    '<p class="note"><a href="#" data-act="auth-sw" data-id="'+(mode==="up"?"in":"up")+'">'+(mode==="up"?t("login"):t("signup"))+'</a>'+(mode==="in"?' · <a href="#" data-act="forgot">'+t("forgot")+'</a>':"")+'</p>');
   authCfg().then(function(c){ var o = $("oa"); if(o && c.external && c.external.google) o.innerHTML = '<button class="btn" type="button" data-act="oauth" data-id="google">Google</button>'; });
   $("af").addEventListener("submit",async function(e){
     e.preventDefault();
@@ -217,14 +236,14 @@ async function afterAuth(fresh){
   await loadMe(); nav();
   if(fresh && isOwner()){ location.hash = "#/admin"; } else render();
 }
-sb.auth.onAuthStateChange(function(ev){ if(ev==="SIGNED_OUT"){ ME = null; SESS = null; render(); } else if(ev==="SIGNED_IN" && !SESS){ setTimeout(function(){ afterAuth(true); },0); } });
+sb.auth.onAuthStateChange(function(ev){ if(ev==="PASSWORD_RECOVERY"){ setTimeout(newPwDlg,0); return; } if(ev==="SIGNED_OUT"){ ME = null; SESS = null; render(); } else if(ev==="SIGNED_IN" && !SESS){ setTimeout(function(){ afterAuth(true); },0); } });
 
 /* ---------- market ---------- */
 var MK = {q:"",rk:"",pr:1000,so:"a"}, ACCS = [];
 function accCard(a){
   var ph = a.photos||[], p0 = ph[0] ? '<img class="ph" id="ph-'+h(a.id)+'" loading="lazy" alt="PUBG akkaunt '+h(a.id)+'" src="'+h(ph[0])+'">' : "";
   var gal = ph.length>1 ? '<div class="gal">'+ph.slice(0,15).map(function(u){ return '<img loading="lazy" alt="" data-act="gal" data-id="'+h(a.id)+'" data-u="'+h(u)+'" src="'+h(u)+'">'; }).join("")+'</div>' : "";
-  var pt = PT[a.seller_id] ? '<p><a href="#@'+h(PT[a.seller_id].nick)+'">@'+h(PT[a.seller_id].nick)+'</a> <span class="chip ok">'+t("pt_ver")+'</span></p>' : '<p class="note">'+t("verified")+'</p>';
+  var pt = PT[a.seller_id] ? '<p><a href="#@'+h(PT[a.seller_id].nick)+'">@'+h(PT[a.seller_id].nick)+'</a> <span class="chip ok">'+t("pt_ver")+'</span></p>' : '<p class="note">'+av(a.seller_id)+(NAMES[a.seller_id]?h(NAMES[a.seller_id])+" · ":"")+t("verified")+'</p>';
   return '<div class="card">'+p0+gal+'<div class="chips"><span class="chip">'+h(a.id)+'</span><span class="chip">'+h(a.rank)+'</span>'+(a.top?'<span class="chip warn">TOP</span>':"")+'</div>'+
     '<p>'+t("lvl")+' '+h(a.level)+' · '+t("skins")+' '+h(a.skins)+' · '+t("mythic")+' '+h(a.mythic)+'</p>'+(a.description?'<p>'+h(a.description)+'</p>':"")+pt+
     '<div class="price">'+fmt(a.price)+' <span class="usd">≈ '+usd(a.price)+'</span></div>'+
@@ -252,7 +271,7 @@ async function vMarket(v){
   $("ms").onchange = function(){ MK.so = this.value; drawMarket(); };
   var r = await sb.from("accounts").select("*").eq("status","sotuvda").order("created_at",{ascending:false}).limit(500);
   ACCS = r.data || [];
-  await loadPartners(); drawMarket();
+  await loadPartners(); await names(ACCS.map(function(x){ return x.seller_id; })); drawMarket();
 }
 
 /* ---------- buy / pay ---------- */
@@ -274,9 +293,9 @@ function payDlg(){
   var s = '<h3>'+t("pay_title")+': '+h(d.id)+'</h3><div class="row">'+tabs+'</div><p class="price">'+fmt(amt)+' <span class="usd">≈ '+usd(amt)+'</span></p>';
   if(isU){
     var ua = (Math.ceil(amt/ST.rate*100)/100).toFixed(2);
-    s += '<p>'+ua+' USDT ('+h(ST.net||"TRC20")+')</p><div class="num">'+h(ST.usdt)+'</div><label><span>'+t("txid")+'</span><input id="tx" maxlength="100" autocomplete="off"></label><p class="err" id="perr"></p><p>'+t("chek")+' <a class="btn sm" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE?text='+encodeURIComponent(d.id+" · USDT")+'">'+t("chek_btn")+'</a></p><button class="btn p" type="button" data-act="pgo">'+t("usdt_send")+'</button>';
+    s += '<p>'+ua+' USDT ('+h(ST.net||"TRC20")+')</p><div class="num">'+h(ST.usdt)+'</div><label><span>'+t("txid")+'</span><input id="tx" maxlength="100" autocomplete="off"></label><p class="err" id="perr"></p><div class="card" style="border-color:#FFB43A"><p><b>'+t("chek_req")+'</b></p><p><a class="btn sm p" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE?text='+encodeURIComponent(d.id+" · USDT")+'">'+t("chek_btn")+'</a></p><label style="flex-direction:row;gap:8px;align-items:flex-start"><input type="checkbox" id="chk" style="margin-top:4px"><span>'+t("chek_chk")+'</span></label></div><button class="btn p" type="button" data-act="pgo">'+t("usdt_send")+'</button>';
   }else if(c){
-    s += '<p>'+t("pay_card")+':</p><div class="num">'+h(c.num)+'</div><div class="row"><button class="btn sm" type="button" data-act="pcopy" data-id="'+h(c.num)+'">'+t("copy")+'</button></div><p class="note">'+t("pay_note")+' ('+h(d.id)+')</p><p>'+t("chek")+' <a class="btn sm" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE?text='+encodeURIComponent(d.id+" · "+fmt(amt)+" UZS")+'">'+t("chek_btn")+'</a></p><p class="err" id="perr"></p><button class="btn p" type="button" data-act="pgo">'+t("pay_done")+'</button>';
+    s += '<p>'+t("pay_card")+':</p><div class="num">'+h(c.num)+'</div><div class="row"><button class="btn sm" type="button" data-act="pcopy" data-id="'+h(c.num)+'">'+t("copy")+'</button></div><p class="note">'+t("pay_note")+' ('+h(d.id)+')</p><div class="card" style="border-color:#FFB43A"><p><b>'+t("chek_req")+'</b></p><p><a class="btn sm p" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE?text='+encodeURIComponent(d.id+" · "+fmt(amt)+" UZS")+'">'+t("chek_btn")+'</a></p><label style="flex-direction:row;gap:8px;align-items:flex-start"><input type="checkbox" id="chk" style="margin-top:4px"><span>'+t("chek_chk")+'</span></label></div><p class="err" id="perr"></p><button class="btn p" type="button" data-act="pgo">'+t("pay_done")+'</button>';
   }
   openDlg(s);
 }
@@ -304,10 +323,10 @@ async function vDeals(v){
 
 /* ---------- sell ---------- */
 var DRAFT = [];
-async function compress(file){
+async function compress(file,maxs){
   return new Promise(function(res,rej){
     var img = new Image(), u = URL.createObjectURL(file);
-    img.onload = function(){ var k = Math.min(1,1280/Math.max(img.width,img.height)), c = document.createElement("canvas"); c.width = Math.round(img.width*k); c.height = Math.round(img.height*k); c.getContext("2d").drawImage(img,0,0,c.width,c.height); c.toBlob(function(b){ URL.revokeObjectURL(u); b?res(b):rej(new Error("img")); },"image/jpeg",.82); };
+    img.onload = function(){ var k = Math.min(1,(maxs||1280)/Math.max(img.width,img.height)), c = document.createElement("canvas"); c.width = Math.round(img.width*k); c.height = Math.round(img.height*k); c.getContext("2d").drawImage(img,0,0,c.width,c.height); c.toBlob(function(b){ URL.revokeObjectURL(u); b?res(b):rej(new Error("img")); },"image/jpeg",.82); };
     img.onerror = function(){ rej(new Error("Rasm o'qilmadi")); }; img.src = u;
   });
 }
@@ -356,6 +375,31 @@ async function vSell(v){
       }catch(x){ er.textContent = errMsg(x); }
     });
   }
+}
+
+/* ---------- profile ---------- */
+async function vProfile(v){
+  if(!SESS || !ME){ v.innerHTML = '<p>'+t("need_login")+'</p><button class="btn p" data-act="auth" data-id="in">'+t("login")+'</button>'; return; }
+  v.innerHTML = '<h2>'+t("prof_t")+'</h2><div class="card" style="max-width:520px"><div class="row" style="align-items:center">'+(ME.avatar?'<img alt="" src="'+h(ME.avatar)+'" style="width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid var(--cy)">':'<div style="width:84px;height:84px;border-radius:50%;border:2px dashed var(--line);display:flex;align-items:center;justify-content:center;font-size:30px">'+h((ME.name||"?").charAt(0).toUpperCase())+'</div>')+
+    '<div><button class="btn sm" type="button" id="avpick">'+t("prof_pfp")+'</button>'+(ME.avatar?' <button class="btn sm bad" type="button" data-act="av-rm">'+t("prof_rm")+'</button>':"")+'<input type="file" id="avf" accept="image/*" hidden></div></div>'+
+    '<form id="pff" class="fl" style="grid-template-columns:1fr;margin-top:10px"><label><span>'+t("prof_name")+'</span><input id="pfn" maxlength="40" required value="'+h(ME.name||"")+'"></label><label><span>'+t("prof_nick")+'</span><input id="pfk" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" placeholder="oxygen_gamer" value="'+h(ME.nick||"")+'"></label><label><span>'+t("email")+'</span><input value="'+h(ME.email||"")+'" disabled></label><p class="err" id="pferr"></p><button class="btn p" type="submit">'+t("prof_save")+'</button></form></div>'+
+    '<div class="card" style="max-width:520px;margin-top:12px"><h3>'+t("prof_pw")+'</h3><form id="pwf" class="fl" style="grid-template-columns:1fr"><label><span>'+t("prof_newpw")+'</span><input id="pp1" type="password" minlength="6" required autocomplete="new-password"></label><label><span>'+t("pw2")+'</span><input id="pp2" type="password" minlength="6" required autocomplete="new-password"></label><p class="err" id="pwerr"></p><button class="btn" type="submit">'+t("prof_pw")+'</button></form></div>';
+  $("avpick").onclick = function(){ $("avf").click(); };
+  $("avf").onchange = async function(){
+    var f = this.files[0]; if(!f) return;
+    try{
+      var b = await compress(f, 320), p = SESS.user.id+"/avatar-"+rid()+".jpg", up = await sb.storage.from("photos").upload(p,b,{contentType:"image/jpeg"}); if(up.error) throw up.error;
+      var url = sb.storage.from("photos").getPublicUrl(p).data.publicUrl, r = await sb.from("profiles").update({avatar:url}).eq("id",SESS.user.id); if(r.error) throw r.error;
+      await loadMe(); toast(t("saved")); nav(); render();
+    }catch(x){ $("pferr").textContent = errMsg(x); }
+  };
+  $("pff").addEventListener("submit",async function(e){
+    e.preventDefault(); var er = $("pferr"), nk = $("pfk").value.trim();
+    var r = await sb.from("profiles").update({name:$("pfn").value.trim(),nick:nk||null}).eq("id",SESS.user.id);
+    if(r.error){ er.textContent = /duplicate|unique/i.test(r.error.message) ? t("nick_taken") : /nick_fmt|check/i.test(r.error.message) ? t("nick_fmt") : errMsg(r.error); return; }
+    delete NAMES[SESS.user.id]; await loadMe(); nav(); toast(t("saved"));
+  });
+  $("pwf").addEventListener("submit",async function(e){ e.preventDefault(); if($("pp1").value!==$("pp2").value){ $("pwerr").textContent = t("pw_mis"); return; } var r = await sb.auth.updateUser({password:$("pp1").value}); if(r.error){ $("pwerr").textContent = r.error.message; return; } $("pp1").value = ""; $("pp2").value = ""; toast(t("reset_ok")); });
 }
 
 /* ---------- partner ---------- */
@@ -510,6 +554,8 @@ async function needLogin(){ if(!SESS){ authDlg("in"); return true; } if(ME && ME
 var ACT = {
   "auth":function(id){ authDlg(id); },
   "auth-sw":function(id){ authDlg(id); },
+  "forgot":async function(){ var em = ($("ae")&&$("ae").value.trim()) || prompt(t("email")); if(!em) return; var r = await sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname}); if(r.error){ toast(r.error.message); return; } resetDlg(em); },
+  "av-rm":async function(){ var r = await sb.from("profiles").update({avatar:null}).eq("id",SESS.user.id); if(r.error){ toast(errMsg(r.error)); return; } await loadMe(); render(); },
   "oauth":async function(id){ var r = await sb.auth.signInWithOAuth({provider:id,options:{redirectTo:location.origin+location.pathname}}); if(r.error) toast(r.error.message); },
   "at":function(id){ AT = id; render(); },
   "gal":function(id,el){ var i = $("ph-"+id); if(i) i.src = el.getAttribute("data-u"); },
@@ -522,7 +568,7 @@ var ACT = {
   "pay":function(id){ var d = (window.__deals||[]).filter(function(x){ return x.id===id; })[0]; if(!d) return; PAY = {deal:d,method:(ST.cards&&ST.cards[0]&&ST.cards[0].k)||"uz"}; payDlg(); },
   "pm":function(id){ PAY.method = id; payDlg(); },
   "pcopy":function(id){ var n = id.replace(/ /g,""); try{ navigator.clipboard.writeText(n); toast(t("copied")); }catch(e){ toast(id); } },
-  "pgo":async function(){ var m = PAY.method, r = await sb.rpc("submit_payment",{p_deal:PAY.deal.id,p_method:m,p_txid:m==="usdt"?$("tx").value.trim():null}); if(r.error){ var e = $("perr"); if(e) e.textContent = errMsg(r.error); return; } closeDlg(); toast(t("ok")); render(); },
+  "pgo":async function(){ if($("chk") && !$("chk").checked){ var e0 = $("perr"); if(e0) e0.textContent = t("chek_need"); return; } var m = PAY.method, r = await sb.rpc("submit_payment",{p_deal:PAY.deal.id,p_method:m,p_txid:m==="usdt"?$("tx").value.trim():null}); if(r.error){ var e = $("perr"); if(e) e.textContent = errMsg(r.error); return; } closeDlg(); toast(t("ok")); render(); },
   "ban":async function(id){ var why = prompt("Bloklash sababi:"); if(why===null) return; var r = await sb.from("profiles").update({banned:true,ban_reason:why}).eq("id",id); if(r.error){ toast(errMsg(r.error)); return; } logA("Bloklandi: "+id.slice(0,8)+" ("+why+")"); render(); },
   "unban":async function(id){ var r = await sb.from("profiles").update({banned:false,ban_reason:null}).eq("id",id); if(r.error){ toast(errMsg(r.error)); return; } logA("Blokdan chiqarildi: "+id.slice(0,8)); render(); },
   "kok":async function(id){ var r = await sb.from("profiles").update({kyc_status:"tasdiq"}).eq("id",id); if(r.error){ toast(errMsg(r.error)); return; } logA("Hujjat tasdiqlandi: "+id.slice(0,8)); render(); },
