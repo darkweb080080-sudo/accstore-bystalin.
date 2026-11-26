@@ -1,4 +1,4 @@
-/* accSTORE-bySTALIN: static site + Supabase backend. All permissions are enforced by database rules (sql/setup.sql). */
+/* SAVDO byOXYGEN: static site + Supabase backend. All permissions are enforced by database rules (sql/setup.sql). */
 (function(){
 "use strict";
 var SB_URL = "https://gbofvbpmbzjwhffqkwbc.supabase.co";
@@ -7,10 +7,10 @@ var sb = window.supabase.createClient(SB_URL, SB_KEY);
 
 /* ---------- i18n ---------- */
 var D = {
-uz:{pw2:"Parolni qayta kiriting",pw_mis:"Parollar mos kelmadi.",chek:"To'lov chekini (skrinshot) egamizga Telegramda yuboring:",chek_btn:"Chekni Telegramga yuborish",tr1:"Pul platformada saqlanadi",tr2:"QR orqali topshirish",tr3:"10 kunlik to'lovlar",tr4:"Tekshirilgan sotuvchilar",nav_market:"Bozor",nav_deals:"Bitimlarim",nav_sell:"Sotuvchi kabineti",nav_chat:"Chat",nav_partner:"Hamkor bo'lish",nav_rent:"Arenda · tez orada",nav_uc:"UC xizmati · tez orada",nav_about:"Biz haqimizda",nav_admin:"Admin paneli",
+uz:{exists:"Bu e-pochta oldin ro'yxatdan o'tgan. Kirish bo'limidan kiring.",otp_t:"E-pochtani tasdiqlash",otp_msg:"6 xonali kod yuborildi:",otp_ph:"Tasdiqlash kodi",otp_go:"Tasdiqlash",otp_resend:"Kodni qayta yuborish",otp_bad:"Kod noto'g'ri yoki eskirgan.",otp_sent:"Kod qayta yuborildi.",pw2:"Parolni qayta kiriting",pw_mis:"Parollar mos kelmadi.",chek:"To'lov chekini (skrinshot) egamizga Telegramda yuboring:",chek_btn:"Chekni Telegramga yuborish",tr1:"Pul platformada saqlanadi",tr2:"QR orqali topshirish",tr3:"10 kunlik to'lovlar",tr4:"Tekshirilgan sotuvchilar",nav_market:"Bozor",nav_deals:"Bitimlarim",nav_sell:"Sotuvchi kabineti",nav_chat:"Chat",nav_partner:"Hamkor bo'lish",nav_rent:"Arenda · tez orada",nav_uc:"UC xizmati · tez orada",nav_about:"Biz haqimizda",nav_admin:"Admin paneli",
  login:"Kirish",logout:"Chiqish",signup:"Ro'yxatdan o'tish",email:"E-pochta",password:"Parol (kamida 6 belgi)",name:"Ism",
  soc_report:"Report, takliflar, hamkorlik",soc_chan:"Rasmiy kanal",soc_ig:"Instagram: tez orada",
- h1:"PUBG akkauntlar, tekshirilgan sotuvchilardan",lead:"accSTORE-bySTALIN: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. To'liq to'lang yoki narxni 10 kunlik to'lovlarga bo'ling. Pul platformada turadi, akkaunt QR kod orqali beriladi.",
+ h1:"PUBG akkauntlar, tekshirilgan sotuvchilardan",lead:"SAVDO byOXYGEN: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. To'liq to'lang yoki narxni 10 kunlik to'lovlarga bo'ling. Pul platformada turadi, akkaunt QR kod orqali beriladi.",
  search:"Qidirish",fprice:"Narx, so'mgacha",sort:"Saralash",s_a:"Avval arzonlari",s_d:"Avval qimmatlari",s_l:"Level bo'yicha",empty:"Hozircha akkaunt yo'q. Yangi akkauntlar rasmiy Telegram kanalda e'lon qilinadi.",
  buy:"Sotib olish",lvl:"Level",skins:"Skin",mythic:"Mythic",full:"To'liq to'lov",inst:"Bo'lib to'lash",term:"Muddat",days:"kun",payn:"ta to'lov, har 10 kunda",total:"Jami",markup:"Ustama",
  verified:"Sotuvchi tekshirilgan",ask:"Sotuvchiga yozish",need_login:"Avval kiring yoki ro'yxatdan o'ting.",own:"Bu sizning e'loningiz.",
@@ -20,7 +20,7 @@ uz:{pw2:"Parolni qayta kiriting",pw_mis:"Parollar mos kelmadi.",chek:"To'lov che
  rule_t:"Bo'lib to'lash qoidasi",rule:"Muddatgacha to'liq to'lamasangiz, to'langan puldan ijara haqi ushlanadi: 0-10 kunda 15%, 11-30 kunda 25%, 31 kundan keyin 30%. Qolgani qaytariladi. To'lov kuni o'tgach 3 kun kutiladi.",
  gt:"Maqsadlarimiz",g1:"Xaridor puli platformada saqlanadi va akkaunt topshirilgandan keyingina sotuvchiga beriladi.",g2:"Barcha sotuvchi va hamkorlar tekshiriladi.",g3:"Ochiq qoidalar: ustama, ijara haqi va muddatlar oldindan ko'rsatiladi.",g4:"Shikoyat va nizolar tez ko'rib chiqiladi.",
  mt:"Marralarimiz",m1:"Birinchi 10 ta muvaffaqiyatli savdo",m2:"Rasmiy kanalda 1 000 obunachi",m3:"10 ta tekshirilgan hamkor (bloger va gamerlar)",m4:"UC xizmatini ishga tushirish",m5:"Arenda xizmatini ishga tushirish",m6:"Ko'proq til va davlatlarda ishlash",mnote:"Bu rejalar. Raqamlar maqsad, kafolat emas.",
- about_t:"Biz haqimizda",about:"accSTORE-bySTALIN: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. Rasmiy Telegram kanalimizda faqat yangiliklar, yangi akkauntlar va qoidalardagi o'zgarishlar e'lon qilinadi.",
+ about_t:"Biz haqimizda",about:"SAVDO byOXYGEN: PUBG Mobile akkauntlarini xavfsiz sotib olish va sotish uchun ishonchli bozor. Rasmiy Telegram kanalimizda faqat yangiliklar, yangi akkauntlar va qoidalardagi o'zgarishlar e'lon qilinadi.",
  soon:"Tez orada",rent_t:"Akkaunt arendasi",rent_d:"Akkauntni soatlik yoki kunlik ijaraga olish: garov bilan, QR orqali kirish, parol berilmaydi. Xizmat tez orada ishga tushadi. Akkauntni ijaraga bermoqchi yoki shu xizmatda ishlamoqchi bo'lsangiz, egamizga yozing.",
  uc_t:"UC xizmati",uc_d:"PUBG Mobile UC sotib olish xizmati tez orada ishga tushadi. Narxlar va usullar rasmiy Telegram kanalimizda e'lon qilinadi.",
  chat_t:"Suhbatlar",support:"Administrator (yordam)",msg_ph:"Xabar yozing",send:"Yuborish",chat_warn:"Faqat shu yerda gaplashing. Parol, QR kod yoki kartani chatda yubormang. To'lov faqat saytdagi kartaga qilinadi.",
@@ -32,10 +32,10 @@ uz:{pw2:"Parolni qayta kiriting",pw_mis:"Parollar mos kelmadi.",chek:"To'lov che
  pt_nick:"Nikneym",pt_chan:"Kanal havolasi (https://...)",pt_bio:"Qisqa tavsif",pt_send:"Ariza yuborish",pt_wait:"Arizangiz ko'rib chiqilmoqda.",pt_code:"Kanalingizga arizangiz kodini e'lon qiling: {c}",pt_taken:"Bu nik band yoki juda o'xshash.",pt_is:"Siz tasdiqlangan hamkorsiz",
  pt_ver:"Tasdiqlangan hamkor",pt_open:"Kanalga o'tish",pt_msg:"Hamkorga yozish",pt_none:"Hozircha e'lon yo'q.",pt_nf:"Hamkor topilmadi.",
  ok:"Bajarildi",err:"Xatolik. Qayta urinib ko'ring.",banned:"Hisobingiz bloklangan.",close:"Yopish",rank_all:"Hammasi"},
-en:{pw2:"Repeat password",pw_mis:"Passwords do not match.",chek:"Send the payment receipt (screenshot) to the owner on Telegram:",chek_btn:"Send receipt on Telegram",tr1:"Money held by the platform",tr2:"QR handover",tr3:"10-day installments",tr4:"Verified sellers",nav_market:"Market",nav_deals:"My deals",nav_sell:"Seller area",nav_chat:"Chat",nav_partner:"Become a partner",nav_rent:"Rental · coming soon",nav_uc:"UC service · coming soon",nav_about:"About us",nav_admin:"Admin panel",
+en:{exists:"This email is already registered. Please sign in.",otp_t:"Verify your email",otp_msg:"A 6-digit code was sent to:",otp_ph:"Verification code",otp_go:"Verify",otp_resend:"Resend code",otp_bad:"Wrong or expired code.",otp_sent:"Code resent.",pw2:"Repeat password",pw_mis:"Passwords do not match.",chek:"Send the payment receipt (screenshot) to the owner on Telegram:",chek_btn:"Send receipt on Telegram",tr1:"Money held by the platform",tr2:"QR handover",tr3:"10-day installments",tr4:"Verified sellers",nav_market:"Market",nav_deals:"My deals",nav_sell:"Seller area",nav_chat:"Chat",nav_partner:"Become a partner",nav_rent:"Rental · coming soon",nav_uc:"UC service · coming soon",nav_about:"About us",nav_admin:"Admin panel",
  login:"Sign in",logout:"Sign out",signup:"Sign up",email:"Email",password:"Password (min 6 chars)",name:"Name",
  soc_report:"Reports, offers, partnership",soc_chan:"Official channel",soc_ig:"Instagram: coming soon",
- h1:"PUBG accounts from verified sellers",lead:"accSTORE-bySTALIN is a trusted marketplace for buying and selling PUBG Mobile accounts safely. Pay in full or split the price into 10-day payments. Money stays on the platform, the account is handed over by QR code.",
+ h1:"PUBG accounts from verified sellers",lead:"SAVDO byOXYGEN is a trusted marketplace for buying and selling PUBG Mobile accounts safely. Pay in full or split the price into 10-day payments. Money stays on the platform, the account is handed over by QR code.",
  search:"Search",fprice:"Price up to, UZS",sort:"Sort by",s_a:"Cheapest first",s_d:"Most expensive first",s_l:"By level",empty:"No accounts yet. New accounts are announced on the official Telegram channel.",
  buy:"Buy",lvl:"Level",skins:"Skins",mythic:"Mythic",full:"Pay in full",inst:"Installments",term:"Term",days:"days",payn:"payments, every 10 days",total:"Total",markup:"Markup",
  verified:"Verified seller",ask:"Message the seller",need_login:"Please sign in or sign up first.",own:"This is your own listing.",
@@ -45,7 +45,7 @@ en:{pw2:"Repeat password",pw_mis:"Passwords do not match.",chek:"Send the paymen
  rule_t:"Installment rule",rule:"If you do not pay in full by the deadline, a rental fee is kept from the paid amount: 15% for 0-10 days, 25% for 11-30 days, 30% after 31 days. The rest is refunded. After a missed due date we wait 3 days.",
  gt:"Our goals",g1:"Buyer money is held by the platform and released to the seller only after the account is handed over.",g2:"Every seller and partner is verified.",g3:"Clear rules: markup, rental fee and deadlines are shown up front.",g4:"Complaints and disputes are handled quickly.",
  mt:"Our milestones",m1:"First 10 successful sales",m2:"1,000 subscribers on the official channel",m3:"10 verified partners (streamers and gamers)",m4:"Launch the UC service",m5:"Launch the rental service",m6:"Work in more languages and countries",mnote:"These are plans. Numbers are targets, not guarantees.",
- about_t:"About us",about:"accSTORE-bySTALIN is a trusted marketplace for buying and selling PUBG Mobile accounts safely. Our official Telegram channel posts only news, new accounts and rule changes.",
+ about_t:"About us",about:"SAVDO byOXYGEN is a trusted marketplace for buying and selling PUBG Mobile accounts safely. Our official Telegram channel posts only news, new accounts and rule changes.",
  soon:"Coming soon",rent_t:"Account rental",rent_d:"Rent an account by the hour or day: with a deposit and QR login, no password shared. The service launches soon. To lend an account or work on this service, message the owner.",
  uc_t:"UC service",uc_d:"The PUBG Mobile UC purchase service launches soon. Prices and methods will be announced on our official Telegram channel.",
  chat_t:"Conversations",support:"Administrator (support)",msg_ph:"Type a message",send:"Send",chat_warn:"Talk only here. Never send passwords, QR codes or cards in chat. Pay only to the card shown on the site.",
@@ -57,10 +57,10 @@ en:{pw2:"Repeat password",pw_mis:"Passwords do not match.",chek:"Send the paymen
  pt_nick:"Nickname",pt_chan:"Channel link (https://...)",pt_bio:"Short bio",pt_send:"Send application",pt_wait:"Your application is under review.",pt_code:"Post your application code on your channel: {c}",pt_taken:"This nickname is taken or too similar.",pt_is:"You are a verified partner",
  pt_ver:"Verified partner",pt_open:"Open channel",pt_msg:"Message the partner",pt_none:"No listings yet.",pt_nf:"Partner not found.",
  ok:"Done",err:"Error. Please try again.",banned:"Your account is blocked.",close:"Close",rank_all:"All"},
-ru:{pw2:"Повторите пароль",pw_mis:"Пароли не совпадают.",chek:"Отправьте чек об оплате (скриншот) владельцу в Telegram:",chek_btn:"Отправить чек в Telegram",tr1:"Деньги хранятся на платформе",tr2:"Передача по QR",tr3:"Платежи каждые 10 дней",tr4:"Проверенные продавцы",nav_market:"Рынок",nav_deals:"Мои сделки",nav_sell:"Кабинет продавца",nav_chat:"Чат",nav_partner:"Стать партнёром",nav_rent:"Аренда · скоро",nav_uc:"UC · скоро",nav_about:"О нас",nav_admin:"Админ-панель",
+ru:{exists:"Этот e-mail уже зарегистрирован. Войдите.",otp_t:"Подтверждение e-mail",otp_msg:"6-значный код отправлен на:",otp_ph:"Код подтверждения",otp_go:"Подтвердить",otp_resend:"Отправить код ещё раз",otp_bad:"Неверный или просроченный код.",otp_sent:"Код отправлен повторно.",pw2:"Повторите пароль",pw_mis:"Пароли не совпадают.",chek:"Отправьте чек об оплате (скриншот) владельцу в Telegram:",chek_btn:"Отправить чек в Telegram",tr1:"Деньги хранятся на платформе",tr2:"Передача по QR",tr3:"Платежи каждые 10 дней",tr4:"Проверенные продавцы",nav_market:"Рынок",nav_deals:"Мои сделки",nav_sell:"Кабинет продавца",nav_chat:"Чат",nav_partner:"Стать партнёром",nav_rent:"Аренда · скоро",nav_uc:"UC · скоро",nav_about:"О нас",nav_admin:"Админ-панель",
  login:"Войти",logout:"Выйти",signup:"Регистрация",email:"E-mail",password:"Пароль (от 6 символов)",name:"Имя",
  soc_report:"Жалобы, предложения, партнёрство",soc_chan:"Официальный канал",soc_ig:"Instagram: скоро",
- h1:"Аккаунты PUBG от проверенных продавцов",lead:"accSTORE-bySTALIN: надёжная площадка для безопасной покупки и продажи аккаунтов PUBG Mobile. Платите сразу или делите цену на платежи каждые 10 дней. Деньги хранятся на платформе, аккаунт передаётся по QR.",
+ h1:"Аккаунты PUBG от проверенных продавцов",lead:"SAVDO byOXYGEN: надёжная площадка для безопасной покупки и продажи аккаунтов PUBG Mobile. Платите сразу или делите цену на платежи каждые 10 дней. Деньги хранятся на платформе, аккаунт передаётся по QR.",
  search:"Поиск",fprice:"Цена до, UZS",sort:"Сортировка",s_a:"Сначала дешёвые",s_d:"Сначала дорогие",s_l:"По уровню",empty:"Аккаунтов пока нет. Новые публикуются в официальном Telegram-канале.",
  buy:"Купить",lvl:"Уровень",skins:"Скины",mythic:"Mythic",full:"Оплата сразу",inst:"Рассрочка",term:"Срок",days:"дней",payn:"платежей, каждые 10 дней",total:"Итого",markup:"Наценка",
  verified:"Проверенный продавец",ask:"Написать продавцу",need_login:"Сначала войдите или зарегистрируйтесь.",own:"Это ваше объявление.",
@@ -70,7 +70,7 @@ ru:{pw2:"Повторите пароль",pw_mis:"Пароли не совпад
  rule_t:"Правило рассрочки",rule:"Если не оплатите полностью к сроку, из оплаченной суммы удерживается плата за аренду: 15% за 0-10 дней, 25% за 11-30 дней, 30% после 31 дня. Остаток возвращается.",
  gt:"Наши цели",g1:"Деньги покупателя хранятся на платформе и передаются продавцу только после передачи аккаунта.",g2:"Все продавцы и партнёры проходят проверку.",g3:"Открытые правила: наценка, плата за аренду и сроки видны заранее.",g4:"Жалобы и споры рассматриваются быстро.",
  mt:"Наши рубежи",m1:"Первые 10 успешных сделок",m2:"1 000 подписчиков в официальном канале",m3:"10 проверенных партнёров",m4:"Запуск сервиса UC",m5:"Запуск сервиса аренды",m6:"Работа на большем числе языков и стран",mnote:"Это планы. Цифры: цели, а не гарантии.",
- about_t:"О нас",about:"accSTORE-bySTALIN: надёжная площадка для безопасной покупки и продажи аккаунтов PUBG Mobile. В официальном Telegram-канале публикуются только новости, новые аккаунты и изменения правил.",
+ about_t:"О нас",about:"SAVDO byOXYGEN: надёжная площадка для безопасной покупки и продажи аккаунтов PUBG Mobile. В официальном Telegram-канале публикуются только новости, новые аккаунты и изменения правил.",
  soon:"Скоро",rent_t:"Аренда аккаунтов",rent_d:"Аренда аккаунта на часы или дни: с залогом и входом по QR, пароль не передаётся. Сервис скоро запустится. Чтобы сдать аккаунт или работать в этом направлении, напишите владельцу.",
  uc_t:"Сервис UC",uc_d:"Сервис покупки UC для PUBG Mobile скоро запустится. Цены и способы оплаты объявим в официальном Telegram-канале.",
  chat_t:"Диалоги",support:"Администратор (поддержка)",msg_ph:"Напишите сообщение",send:"Отправить",chat_warn:"Общайтесь только здесь. Не отправляйте пароли, QR-коды и карты в чате.",
@@ -82,17 +82,17 @@ ru:{pw2:"Повторите пароль",pw_mis:"Пароли не совпад
  pt_nick:"Ник",pt_chan:"Ссылка на канал (https://...)",pt_bio:"Коротко о себе",pt_send:"Отправить заявку",pt_wait:"Заявка на рассмотрении.",pt_code:"Опубликуйте код заявки на канале: {c}",pt_taken:"Ник занят или слишком похож.",pt_is:"Вы подтверждённый партнёр",
  pt_ver:"Проверенный партнёр",pt_open:"Открыть канал",pt_msg:"Написать партнёру",pt_none:"Объявлений пока нет.",pt_nf:"Партнёр не найден.",
  ok:"Готово",err:"Ошибка. Попробуйте ещё раз.",banned:"Ваш аккаунт заблокирован.",close:"Закрыть",rank_all:"Все"},
-tr:{pw2:"Şifreyi tekrarlayın",pw_mis:"Şifreler eşleşmiyor.",chek:"Ödeme dekontunu (ekran görüntüsü) Telegram'dan sahibe gönderin:",chek_btn:"Dekontu Telegram'dan gönder",tr1:"Para platformda bekler",tr2:"QR ile teslim",tr3:"10 günlük taksit",tr4:"Doğrulanmış satıcılar",nav_market:"Pazar",nav_deals:"Anlaşmalarım",nav_sell:"Satıcı paneli",nav_chat:"Sohbet",nav_partner:"Ortak ol",nav_rent:"Kiralama · yakında",nav_uc:"UC hizmeti · yakında",nav_about:"Hakkımızda",nav_admin:"Yönetim paneli",
+tr:{exists:"Bu e-posta zaten kayıtlı. Giriş yapın.",otp_t:"E-posta doğrulama",otp_msg:"6 haneli kod gönderildi:",otp_ph:"Doğrulama kodu",otp_go:"Doğrula",otp_resend:"Kodu tekrar gönder",otp_bad:"Kod yanlış veya süresi doldu.",otp_sent:"Kod tekrar gönderildi.",pw2:"Şifreyi tekrarlayın",pw_mis:"Şifreler eşleşmiyor.",chek:"Ödeme dekontunu (ekran görüntüsü) Telegram'dan sahibe gönderin:",chek_btn:"Dekontu Telegram'dan gönder",tr1:"Para platformda bekler",tr2:"QR ile teslim",tr3:"10 günlük taksit",tr4:"Doğrulanmış satıcılar",nav_market:"Pazar",nav_deals:"Anlaşmalarım",nav_sell:"Satıcı paneli",nav_chat:"Sohbet",nav_partner:"Ortak ol",nav_rent:"Kiralama · yakında",nav_uc:"UC hizmeti · yakında",nav_about:"Hakkımızda",nav_admin:"Yönetim paneli",
  login:"Giriş",logout:"Çıkış",signup:"Kayıt ol",email:"E-posta",password:"Şifre (en az 6 karakter)",name:"Ad",
  soc_report:"Şikayet, öneri, ortaklık",soc_chan:"Resmi kanal",soc_ig:"Instagram: yakında",
- h1:"Doğrulanmış satıcılardan PUBG hesapları",lead:"accSTORE-bySTALIN: PUBG Mobile hesaplarını güvenle alıp satmak için güvenilir pazar. Peşin ödeyin veya fiyatı 10 günlük taksitlere bölün. Para platformda bekler, hesap QR ile teslim edilir.",
+ h1:"Doğrulanmış satıcılardan PUBG hesapları",lead:"SAVDO byOXYGEN: PUBG Mobile hesaplarını güvenle alıp satmak için güvenilir pazar. Peşin ödeyin veya fiyatı 10 günlük taksitlere bölün. Para platformda bekler, hesap QR ile teslim edilir.",
  search:"Ara",fprice:"Fiyat üst sınırı, UZS",sort:"Sırala",s_a:"Önce ucuzlar",s_d:"Önce pahalılar",s_l:"Seviyeye göre",empty:"Henüz hesap yok. Yeni hesaplar resmi Telegram kanalında duyurulur.",
  buy:"Satın al",lvl:"Seviye",skins:"Skin",mythic:"Mythic",full:"Peşin ödeme",inst:"Taksit",term:"Süre",days:"gün",payn:"ödeme, her 10 günde",total:"Toplam",markup:"Ek ücret",
  verified:"Doğrulanmış satıcı",ask:"Satıcıya yaz",need_login:"Önce giriş yapın veya kayıt olun.",own:"Bu sizin ilanınız.",
  pay_title:"Ödeme",pay_card:"Bu karta ödeyin",pay_note:"Ödemeyi gönderin, açıklamaya anlaşma numarasını yazın, 'Ödedim'e basın. Yönetici onaylayacak.",pay_done:"Ödedim",copy:"Kopyala",copied:"Kopyalandı",
  gt:"Hedeflerimiz",g1:"Alıcının parası platformda tutulur, hesap teslim edildikten sonra satıcıya ödenir.",g2:"Tüm satıcılar ve ortaklar doğrulanır.",g3:"Açık kurallar: ek ücret, kira bedeli ve süreler baştan görünür.",g4:"Şikayet ve anlaşmazlıklar hızla incelenir.",
  mt:"Kilometre taşlarımız",m1:"İlk 10 başarılı satış",m2:"Resmi kanalda 1.000 abone",m3:"10 doğrulanmış ortak",m4:"UC hizmetini başlatmak",m5:"Kiralama hizmetini başlatmak",m6:"Daha fazla dilde ve ülkede çalışmak",mnote:"Bunlar planlardır. Rakamlar hedeftir, garanti değil.",
- about_t:"Hakkımızda",about:"accSTORE-bySTALIN: PUBG Mobile hesaplarını güvenle alıp satmak için güvenilir pazar. Resmi Telegram kanalımızda yalnızca haberler, yeni hesaplar ve kural değişiklikleri paylaşılır.",
+ about_t:"Hakkımızda",about:"SAVDO byOXYGEN: PUBG Mobile hesaplarını güvenle alıp satmak için güvenilir pazar. Resmi Telegram kanalımızda yalnızca haberler, yeni hesaplar ve kural değişiklikleri paylaşılır.",
  soon:"Yakında",rent_t:"Hesap kiralama",rent_d:"Hesabı saatlik veya günlük kiralayın. Hizmet yakında başlıyor. Sahibe yazın.",uc_t:"UC hizmeti",uc_d:"PUBG Mobile UC satın alma hizmeti yakında başlıyor. Fiyatlar resmi Telegram kanalımızda duyurulacak.",
  chat_t:"Sohbetler",support:"Yönetici (destek)",msg_ph:"Mesaj yazın",send:"Gönder",ok:"Tamam",close:"Kapat",rank_all:"Hepsi",deals_t:"Anlaşmalarım",sell_t:"Satıcı paneli",pt_t:"Ortak ol"}
 };
@@ -150,7 +150,7 @@ function nav(){
   var o = items.map(function(i){ return '<a href="#/'+(i[0]==="market"?"":i[0])+'" class="'+(route===i[0]?"on":"")+'">'+t(i[1])+'</a>'; }).join("");
   if(isStaff()) o += '<a href="#/admin" class="'+(route==="admin"?"on":"")+'">'+t("nav_admin")+(isOwner()?" · EGA":"")+'</a>';
   $("nav").innerHTML = o;
-  $("soc").innerHTML = '<a class="btn sm" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE">'+t("soc_report")+'</a> <a class="btn sm" target="_blank" rel="noopener" href="https://t.me/STOREe_ACC">'+t("soc_chan")+'</a> <span class="soon">'+t("soc_ig")+'</span>';
+  $("soc").innerHTML = '<a class="btn sm" target="_blank" rel="noopener" href="https://t.me/owner_accSTORE">'+t("soc_report")+'</a> <a class="btn sm" target="_blank" rel="noopener" href="https://t.me/STOREe_ACC">'+t("soc_chan")+'</a> <a class="btn sm" target="_blank" rel="noopener" href="https://www.youtube.com/@oxygenpubgmobileGG">YouTube</a> <span class="soon">'+t("soc_ig")+'</span>';
   $("authBtn").textContent = SESS ? t("logout")+" ("+h((ME&&ME.name)||"")+")" : t("login");
   Array.prototype.forEach.call(document.querySelectorAll("#lang button[data-l]"),function(b){ b.style.opacity = b.getAttribute("data-l")===LG?1:.6; });
 }
@@ -177,6 +177,14 @@ function vAbout(v){
 }
 
 /* ---------- auth ---------- */
+function otpDlg(em){
+  openDlg('<h3>'+t("otp_t")+'</h3><p>'+t("otp_msg")+' <b>'+h(em)+'</b></p><form id="of" class="fl" style="grid-template-columns:1fr"><label><span>'+t("otp_ph")+'</span><input id="oc" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" maxlength="10" required></label><p class="err" id="oerr"></p><button class="btn p" type="submit">'+t("otp_go")+'</button></form><p class="note"><a href="#" id="ors">'+t("otp_resend")+'</a></p>');
+  $("of").addEventListener("submit",async function(e){
+    e.preventDefault(); var r = await sb.auth.verifyOtp({email:em,token:$("oc").value.trim(),type:"signup"});
+    if(r.error){ $("oerr").textContent = t("otp_bad"); return; } closeDlg(); await afterAuth(true);
+  });
+  $("ors").addEventListener("click",async function(e){ e.preventDefault(); var r = await sb.auth.resend({type:"signup",email:em}); $("oerr").textContent = r.error ? r.error.message : t("otp_sent"); });
+}
 var AUTHCFG = null;
 async function authCfg(){
   if(AUTHCFG) return AUTHCFG;
@@ -200,7 +208,8 @@ function authDlg(mode){
     if(mode==="up") r = await sb.auth.signUp({email:em,password:pw,options:{data:{name:$("an").value.trim()}}});
     else r = await sb.auth.signInWithPassword({email:em,password:pw});
     if(r.error){ $("aerr").textContent = r.error.message; return; }
-    if(mode==="up" && !r.data.session){ var r2 = await sb.auth.signInWithPassword({email:em,password:pw}); if(r2.error){ $("aerr").textContent = /not confirmed/i.test(r2.error.message) ? "Hisob ochildi, lekin tasdiqlash talab qilinmoqda. Administratorga yozing: t.me/owner_accSTORE" : r2.error.message; return; } }
+    if(mode==="up" && r.data.user && r.data.user.identities && r.data.user.identities.length===0){ $("aerr").textContent = t("exists"); return; }
+    if(mode==="up" && !r.data.session){ otpDlg(em); return; }
     closeDlg(); await afterAuth(true);
   });
 }
