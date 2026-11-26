@@ -14,7 +14,7 @@
 <meta property="og:description" content="Xavfsiz savdo: pul platformada saqlanadi, akkaunt QR orqali topshiriladi.">
 <meta property="og:type" content="website"><meta property="og:url" content="https://darkweb080080-sudo.github.io/accstore-bystalin./">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SAVDO byOXYGEN","alternateName":["SAVDO by OXYGEN","Oxygen Savdo"],"url":"https://darkweb080080-sudo.github.io/accstore-bystalin./","sameAs":["https://t.me/STOREe_ACC"]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <style>
 
 :root{--bg:#080A14;--s:#12162B;--line:#2B3263;--ink:#E6EBFF;--ink2:#9AA4D2;--cy:#27F2FF;--mg:#FF3DDB}
@@ -260,6 +260,39 @@ html.lite .card::before{display:none}
 html.lite #view{animation:none}
 html.lite .rv{opacity:1;transform:none;transition:none}
 html.lite header{backdrop-filter:none!important;background:rgba(5,7,15,.9)}
+
+/* v3 */
+body{font-family:Manrope,Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.num,.price,.spec .num,.chips .chip{font-family:Orbitron,"Chakra Petch",Arial,sans-serif;font-weight:600;letter-spacing:.02em}
+.spec .num{color:var(--cy);font-size:.92em}.price.num{font-size:20px}
+.avc{width:38px;height:38px;border-radius:50%!important;padding:0!important;overflow:hidden;border:2px solid var(--cy);background:linear-gradient(135deg,#1b2a55,#3a1b55);color:#fff;font:700 16px "Chakra Petch",sans-serif;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;vertical-align:middle}
+.avc[hidden]{display:none!important}
+.avc img{width:100%;height:100%;object-fit:cover;display:block}
+.umenu{position:fixed;top:62px;right:16px;z-index:80;width:260px;background:var(--s);border:1px solid var(--cy);border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.5);padding:8px;display:flex;flex-direction:column;gap:2px}
+.umenu[hidden]{display:none}
+.umenu .mh{display:flex;gap:10px;align-items:center;padding:8px 8px 12px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.umenu .mh img,.umenu .mh b{width:40px;height:40px;border-radius:50%;object-fit:cover;background:linear-gradient(135deg,#1b2a55,#3a1b55);display:flex;align-items:center;justify-content:center;font-family:"Chakra Petch",sans-serif}
+.umenu .mh small{display:block;color:var(--ink2);font-size:11px;overflow-wrap:anywhere}
+.umenu .mi{display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:14px;background:none;border:0;cursor:pointer;width:100%;text-align:left;font-family:inherit}
+.umenu .mi i{font-style:normal;width:20px;text-align:center;color:var(--cy)}
+.umenu .mi:hover{background:rgba(39,242,255,.1)}
+.umenu .out{margin-top:6px;border-top:1px solid var(--line);border-radius:0 0 8px 8px;color:#ff6b7a}.umenu .out i{color:#ff6b7a}
+.gated nav.m,.gated #soc{display:none}
+.gatew{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:20px 0}
+.gatec{width:100%;max-width:400px;background:rgba(13,17,34,.72);backdrop-filter:blur(16px);border:1px solid rgba(39,242,255,.35);border-radius:18px;padding:26px 22px;box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 40px rgba(39,242,255,.08)}
+.gatec h2{text-align:center;margin:6px 0 2px}.gl{text-align:center;font:700 26px "Chakra Petch",sans-serif;letter-spacing:.06em}.gl b{color:var(--cy);font-weight:500;font-size:.6em;margin:0 4px}
+.c{text-align:center}.btn.wide{width:100%}
+.or{display:flex;align-items:center;gap:10px;color:var(--ink2);font-size:12px;margin:12px 0}.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+.prov{display:grid;gap:8px}.prov .btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:11px}
+.tg{grid-template-columns:260px 1fr}@media(max-width:700px){.tg{grid-template-columns:1fr}}
+.tg .th{display:flex;flex-direction:column;align-items:flex-start;gap:2px;position:relative;padding-right:34px}.tg .th small{color:var(--ink2);font-size:11px;font-weight:400;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tg .th .tt{font-weight:600}.bdg{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--cy);color:#05070f;border-radius:10px;font-size:11px;padding:1px 7px}
+.msgs{max-height:60vh;min-height:300px}
+.msg{padding:7px 10px 4px;border-radius:14px 14px 14px 4px}.msg.me{background:rgba(39,242,255,.14);border:0;border-radius:14px 14px 4px 14px}
+.msg .bd{white-space:pre-wrap}.msg .mm{display:block;max-width:100%;max-height:300px;border-radius:10px;margin:2px 0 4px}
+.msg .mt{display:block;text-align:right;font-size:10px;color:var(--ink2);margin-top:2px}
+.tk{font-style:normal;margin-left:4px;color:var(--ink2);letter-spacing:-2px}.tk.rd{color:#27c3ff}
+.tgf{margin-top:8px;flex-wrap:nowrap}
 </style>
 </head>
 <body>
