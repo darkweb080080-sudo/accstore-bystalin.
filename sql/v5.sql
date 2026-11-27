@@ -63,3 +63,5 @@ create or replace function public.can_chat(t text) returns boolean language sql 
     when t like 'pt:%' then is_staff() or split_part(t,':',2)=auth.uid()::text or split_part(t,':',3)=auth.uid()::text
     when t like 'pp:%' then is_pp() or split_part(t,':',2)=auth.uid()::text
     else false end $$;
+
+notify pgrst, 'reload schema';
