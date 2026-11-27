@@ -130,10 +130,10 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
 (function(){
   var R = document.documentElement;
   var TXT = {
-    uz:{t:"Ko'rinish",n:"Tungi",d:"Kunduzgi",a:"Avto (vaqt bo'yicha)",bg:"Orqa fon",sc:"Animatsiyali sahna",im:"Mening rasmim",pick:"Galereyadan rasm tanlash",rm:"Rasmni olib tashlash",dim:"Qoraytirish / yorqinlik",bl:"Xira qilish",fx:"Parashut va effektlar",x:"Yopish",lite:"Yengil rejim (telefon va sekin qurilmalar uchun tezroq)",err:"Rasm saqlanmadi. Kichikroq rasm tanlang."},
-    en:{t:"Appearance",n:"Night",d:"Day",a:"Auto (by time)",bg:"Background",sc:"Animated scene",im:"My image",pick:"Choose from gallery",rm:"Remove image",dim:"Overlay strength",bl:"Blur",fx:"Parachutes and effects",x:"Close",lite:"Lite mode (faster on slow devices)",err:"Could not save the image. Pick a smaller one."},
-    ru:{t:"Внешний вид",n:"Ночь",d:"День",a:"Авто (по времени)",bg:"Фон",sc:"Анимированная сцена",im:"Моё фото",pick:"Выбрать из галереи",rm:"Убрать фото",dim:"Затемнение",bl:"Размытие",fx:"Парашюты и эффекты",x:"Закрыть",lite:"Лёгкий режим (быстрее на слабых устройствах)",err:"Не удалось сохранить фото. Выберите меньше."},
-    tr:{t:"Görünüm",n:"Gece",d:"Gündüz",a:"Otomatik (saate göre)",bg:"Arka plan",sc:"Animasyonlu sahne",im:"Resmim",pick:"Galeriden seç",rm:"Resmi kaldır",dim:"Karartma",bl:"Bulanıklık",fx:"Paraşüt ve efektler",x:"Kapat",lite:"Hafif mod (yavaş cihazlarda daha hızlı)",err:"Resim kaydedilemedi. Daha küçük seçin."}
+    uz:{t:"Sozlamalar",n:"Tungi",d:"Kunduzgi",a:"Avto (vaqt bo'yicha)",bg:"Orqa fon",sc:"Animatsiyali sahna",im:"Mening rasmim",pick:"Galereyadan rasm tanlash",rm:"Rasmni olib tashlash",dim:"Qoraytirish / yorqinlik",bl:"Xira qilish",fx:"Parashut va effektlar",x:"Yopish",lite:"Yengil rejim (telefon va sekin qurilmalar uchun tezroq)",err:"Rasm saqlanmadi. Kichikroq rasm tanlang."},
+    en:{t:"Settings",n:"Night",d:"Day",a:"Auto (by time)",bg:"Background",sc:"Animated scene",im:"My image",pick:"Choose from gallery",rm:"Remove image",dim:"Overlay strength",bl:"Blur",fx:"Parachutes and effects",x:"Close",lite:"Lite mode (faster on slow devices)",err:"Could not save the image. Pick a smaller one."},
+    ru:{t:"Настройки",n:"Ночь",d:"День",a:"Авто (по времени)",bg:"Фон",sc:"Анимированная сцена",im:"Моё фото",pick:"Выбрать из галереи",rm:"Убрать фото",dim:"Затемнение",bl:"Размытие",fx:"Парашюты и эффекты",x:"Закрыть",lite:"Лёгкий режим (быстрее на слабых устройствах)",err:"Не удалось сохранить фото. Выберите меньше."},
+    tr:{t:"Ayarlar",n:"Gece",d:"Gündüz",a:"Otomatik (saate göre)",bg:"Arka plan",sc:"Animasyonlu sahne",im:"Resmim",pick:"Galeriden seç",rm:"Resmi kaldır",dim:"Karartma",bl:"Bulanıklık",fx:"Paraşüt ve efektler",x:"Kapat",lite:"Hafif mod (yavaş cihazlarda daha hızlı)",err:"Resim kaydedilemedi. Daha küçük seçin."}
   };
   function L(){ return TXT[R.lang] || TXT.en; }
   function get(k,d){ try{ var v = localStorage.getItem(k); return v==null?d:v; }catch(e){ return d; } }
@@ -160,7 +160,7 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
   function btn(on,act,label){ return '<button type="button" class="btn sm '+(on?"on p":"")+'" data-a="'+act+'">'+label+'</button>'; }
   function draw(){
     var T = L();
-    dlg.innerHTML = '<h3>'+T.t+'</h3>'+
+    dlg.innerHTML = '<h3>'+T.t+'</h3><div class="tg">'+["uz","en","ru","tr"].map(function(l){ return btn(R.lang===l,"lg:"+l,l.toUpperCase()); }).join("")+'</div>'+
       '<div class="tg">'+btn(S.th==="dark","th:dark",T.n)+btn(S.th==="light","th:light",T.d)+btn(S.th==="auto","th:auto",T.a)+'</div>'+
       '<h3 style="font-size:15px">'+T.bg+'</h3><div class="tg">'+btn(S.bg==="scene","bg:scene",T.sc)+btn(S.bg==="image"&&!!IMG,"bg:image",T.im)+'</div>'+
       '<div class="tg"><button type="button" class="btn sm" data-a="pick">'+T.pick+'</button>'+(IMG?'<button type="button" class="btn sm bad" data-a="rm">'+T.rm+'</button>':"")+'<input type="file" id="tfile" accept="image/*" hidden></div>'+
@@ -173,6 +173,7 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
   dlg.addEventListener("click",function(e){
     var b = e.target.closest("[data-a]"); if(e.target===dlg){ var rc = dlg.getBoundingClientRect(); if(e.clientX<rc.left||e.clientX>rc.right||e.clientY<rc.top||e.clientY>rc.bottom) dlg.close(); return; } if(!b) return;
     var a = b.getAttribute("data-a");
+    if(a.indexOf("lg:")===0){ var lb = document.querySelector('#lang button[data-l="'+a.slice(3)+'"]'); if(lb) lb.click(); draw(); return; }
     if(a.indexOf("th:")===0){ S.th = a.slice(3); }
     else if(a.indexOf("bg:")===0){ if(a==="bg:image" && !IMG){ document.getElementById("tfile").click(); return; } S.bg = a.slice(3); }
     else if(a==="pick"){ document.getElementById("tfile").click(); return; }
@@ -185,7 +186,7 @@ window.addEventListener("scroll",function(){ var h = document.documentElement; p
   dlg.addEventListener("input",function(e){ var r = e.target.getAttribute("data-r"); if(!r) return; S[r] = +e.target.value; save(); apply(); });
   dlg.addEventListener("change",async function(e){
     if(e.target.id!=="tfile" || !e.target.files[0]) return;
-    try{ var d = await shrink(e.target.files[0]); if(!set("bgimg",d)){ document.getElementById("terr").textContent = L().err; return; } IMG = d; S.bg = "image"; save(); apply(); draw(); }
+    try{ var fl = e.target.files[0]; e.target.value = ""; var bl = window.OxEdit ? await window.OxEdit.open(fl,{w:1600}) : fl; if(!bl) return; var d = await new Promise(function(ok){ var fr = new FileReader(); fr.onload = function(){ ok(fr.result); }; fr.readAsDataURL(bl); }); if(!set("bgimg",d)){ document.getElementById("terr").textContent = L().err; return; } IMG = d; S.bg = "image"; save(); apply(); draw(); }
     catch(x){ document.getElementById("terr").textContent = L().err; }
   });
   document.getElementById("themeBtn").addEventListener("click",function(){ draw(); dlg.showModal(); });

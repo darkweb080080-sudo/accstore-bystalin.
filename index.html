@@ -305,6 +305,17 @@ header{background:rgba(5,7,15,.94)}html[data-theme=light] header{background:rgba
 .card{transition:border-color .2s,box-shadow .2s}
 html,body{scroll-behavior:auto}
 .avd{width:100%;max-height:320px;border-radius:8px;background:#000;margin:6px 0}.vp{height:6px;background:var(--line);border-radius:4px;overflow:hidden}.vp i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cy),var(--mg))}
+
+/* v5: ixcham bir qatorli tugmalar, chat avatarlari */
+#lang button[data-l]{display:none!important}#themeBtn[hidden]{display:none!important}
+nav.m,#soc,.trust{flex-wrap:nowrap!important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px;scroll-snap-type:x proximity}
+nav.m::-webkit-scrollbar,#soc::-webkit-scrollbar,.trust::-webkit-scrollbar,.fl.h::-webkit-scrollbar{display:none}
+nav.m a,#soc .btn,#soc .soon,.trust span{flex:0 0 auto;white-space:nowrap;padding:6px 11px!important;font-size:13px!important}
+.trust{margin:10px 0 4px}.trust span{font-size:12px!important;padding:5px 11px!important}
+.fl.h{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;scrollbar-width:none;margin:10px 0}.fl.h>label{flex:0 0 auto;min-width:130px}.fl.h>label:nth-child(3){min-width:200px}
+.fl.h select,.fl.h input{padding:7px 9px;font-size:13px}
+.mrow{display:flex;gap:6px;align-items:flex-end;align-self:flex-start;max-width:92%}.mrow.me{align-self:flex-end}.mrow .msg{max-width:100%;align-self:auto}
+.mav{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none;background:linear-gradient(135deg,#1b2a55,#3a1b55);display:inline-flex;align-items:center;justify-content:center;font:700 13px "Chakra Petch",sans-serif;color:#fff}
 </style>
 </head>
 <body>
@@ -322,6 +333,7 @@ html,body{scroll-behavior:auto}
 <dialog id="dlg"><div id="dbody"></div><div class="row"><button class="btn sm" id="dx" type="button">×</button></div></dialog>
 <div id="toast" hidden></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="editor.js"></script>
 <script src="app.js"></script>
 <script src="fx.js"></script>
 </body>
